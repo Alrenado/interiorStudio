@@ -18,7 +18,7 @@ import uglify from 'gulp-uglify';
 import concat from 'gulp-concat';
 
 // img
-import { execa } from 'execa';
+import imagemin, {mozjpeg} from 'gulp-imagemin';
 
 // clear files
 import {deleteAsync as del} from 'del';
@@ -104,20 +104,23 @@ function html() {
 function img() {
     return gulp
         .src(paths.src.img, {encoding: false})
+        .pipe(imagemin())
+        .pipe(gulp.dest(paths.build.img))
+        .pipe(gulp.src('./src/img/**/*.svg'))
         .pipe(gulp.dest(paths.build.img))
         .pipe(browserSync.stream());
 
 }
 
-function squooshImages() {
-    return execa('npx', [
-        '@squoosh/cli',
-        '--mozjpeg', '{"quality":75}',
-        '--oxipng', '{"level":2}',
-        '-d', paths.build.img,
-        paths.src.img
-    ]);
-}
+// function squooshImages() {
+//     return execa('npx', [
+//         '@squoosh/cli',
+//         '--mozjpeg', '{"quality":75}',
+//         '--oxipng', '{"level":2}',
+//         '-d', paths.build.img,
+//         paths.src.img
+//     ]);
+// }
 
 function clean() {
     return del('./dist/');
