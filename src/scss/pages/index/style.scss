@@ -1,6 +1,15 @@
+@use '../../components/normalize';
+@use '../../components/style';
+@use '../../components/mixins';
+
 @use '../../components/header';
 @use '../../components/footer';
 
 body{
-  background-color: black
+  background-color: black;
+  @include mixins.fontInit(
+          $family: 'Montserrat',
+          $font-weight: 700,
+          $font-size: 2rem
+  );
 }
