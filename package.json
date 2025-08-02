@@ -29,7 +29,9 @@
   "dependencies": {
     "autoprefixer": "^10.4.21",
     "del": "^8.0.0",
+    "gulp-htmlmin": "^5.0.1",
     "normalize.css": "^8.0.1",
+    "serve-static": "^2.2.0",
     "swiper": "^11.2.10"
   }
 }

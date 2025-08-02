@@ -1,6 +1,9 @@
 // gulp
 import gulp from 'gulp';
 
+//html
+import htmlmin from 'gulp-htmlmin';
+
 //css
 //scss
 import dartSass from 'sass';
@@ -11,6 +14,7 @@ import cleanCSS from "gulp-clean-css";
 import rename from "gulp-rename";
 
 // live coding
+import serveStatic from 'serve-static';
 import browserSync from 'browser-sync';
 
 // js
@@ -44,7 +48,7 @@ const paths = {
     src: {
         html: './src/*.html',
         css: './src/scss/*.scss',
-        js: './src/js/index.js',
+        js: './src/js/script.js',
         img: './src/img/**/*.{jpg,jpeg,png,gif,webp,ico,svg}',
         fonts: './src/fonts/*.ttf',
         libs: './src/libs/**/*.*',
@@ -63,7 +67,7 @@ const paths = {
 function js() {
     return gulp
         .src(paths.src.js)
-        .pipe(concat('index.js'))
+        .pipe(concat('script.js'))
         .pipe(uglify())
         .pipe(gulp.dest(paths.build.js))
         .pipe(browserSync.stream());
@@ -71,19 +75,13 @@ function js() {
 
 function style() {
     return gulp
-        .src(paths.src.css)
+        .src('./src/scss/pages/**/style.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer())
-        .pipe(gulp.dest(paths.build.css))
-        .pipe(browserSync.stream());
-}
-
-function minifyCSS() {
-    return gulp
-        .src('dist/css/style.css')
         .pipe(cleanCSS())
         .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest(paths.build.css))
+        .pipe(gulp.dest('./dist/styles'))
+        .pipe(browserSync.stream());
 }
 
 function libs() {
@@ -94,12 +92,33 @@ function libs() {
 }
 
 function html() {
-    return gulp
-        .src(paths.src.html)
-        .pipe(fileInclude({prefix: '@@',  basepath: '@file' }))
-        .pipe(gulp.dest(paths.build.html))
+    return gulp.src([
+        './src/html/pages/**/index.html',
+        './src/html/pages/*.html'
+    ], { base: './src/html/pages' })
+        .pipe(fileInclude({
+            prefix: '@@',
+            basepath: '@file'
+        }))
+        .pipe(rename(file => {
+            const pageName = file.basename === 'index'
+                ? file.dirname
+                : file.basename;
+            file.dirname  = '';
+            file.basename = pageName;
+        }))
+        .pipe(htmlmin({
+            collapseWhitespace: true,
+            minifyCSS: true,
+            minifyJS: true,
+            sortClassName: true,
+            sortAttributes: true,
+            removeComments: true,
+        }))
+        .pipe(gulp.dest('./dist/'))
         .pipe(browserSync.stream());
 }
+
 
 function img() {
     return gulp
@@ -112,24 +131,26 @@ function img() {
 
 }
 
-// function squooshImages() {
-//     return execa('npx', [
-//         '@squoosh/cli',
-//         '--mozjpeg', '{"quality":75}',
-//         '--oxipng', '{"level":2}',
-//         '-d', paths.build.img,
-//         paths.src.img
-//     ]);
-// }
-
 function clean() {
     return del('./dist/');
 }
 
+const bs = browserSync.create();
+
+function reload(done) {
+    bs.reload();
+    done();
+}
+
+
+
 function server() {
-    browserSync.init({
+    bs.init({
         server: {
-            baseDir: './dist/'
+            baseDir: './dist/',
+            middleware: [
+                serveStatic('dist', { extensions: ['html'] })
+            ]
         },
         notify: false,
         port: 3000,
@@ -150,12 +171,21 @@ function ttfToWoff2() {
         .pipe(gulp.dest(paths.build.fonts));
 }
 
+// function watchFiles() {
+//     gulp.watch(paths.src.html, html);
+//     gulp.watch(paths.src.css, style);
+//     gulp.watch(paths.src.js, js);
+//     gulp.watch(paths.src.libs, libs);
+//     gulp.watch(paths.src.img, img);
+// }
+
 function watchFiles() {
-    gulp.watch(paths.src.html, html);
-    gulp.watch(paths.src.css, style);
-    gulp.watch(paths.src.js, js);
-    gulp.watch(paths.src.libs, libs);
+    gulp.watch('src/html//*.html', gulp.series(html, reload));
+    gulp.watch('src/scss//*.scss', style);
+    gulp.watch('src/js/**/*.js', gulp.series(js, reload));
     gulp.watch(paths.src.img, img);
+    gulp.watch(paths.src.fonts, gulp.series(ttfToWoff, ttfToWoff2));
+    gulp.watch(paths.src.libs, libs);
 }
 
 
@@ -163,7 +193,7 @@ const fonts = gulp.series(ttfToWoff, ttfToWoff2);
 const mainTasks = gulp.series(clean, gulp.parallel(html, style, js, fonts, libs, img));
 const dev = gulp.series(mainTasks, gulp.parallel(watchFiles, server));
 
-const build = gulp.series(mainTasks, minifyCSS);
+const build = gulp.series(mainTasks);
 
 gulp.task('default', dev);
 gulp.task('fonts', fonts);

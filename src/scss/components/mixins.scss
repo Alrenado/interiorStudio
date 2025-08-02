@@ -1,0 +1,15 @@
+@mixin font($family: 'Montserrat',$weight: 300, $style: normal, $filename: 'Montserrat-Light'){
+  font-family: $family;
+  font-weight: $weight;
+  font-style: $style;
+  font-display: swap;
+  src:
+          url('../fonts/#{$filename}.woff2') format('woff2'),
+          url('../fonts/#{$filename}.woff') format('woff');
+}
+
+@mixin fontInit($family: 'Montserrat', $alt: 'sans-serif', $font-weight: 400, $font-size){
+  font-family: $family, $alt;
+  font-weight: $font-weight;
+  font-size: clamp(calc($font-size - 20%), 1.2vh, $font-size);
+}
