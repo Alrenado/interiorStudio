@@ -44,7 +44,7 @@ const paths = {
     src: {
         html: './src/*.html',
         css: './src/scss/*.scss',
-        js: './src/js/main.js',
+        js: './src/js/index.js',
         img: './src/img/**/*.{jpg,jpeg,png,gif,webp,ico,svg}',
         fonts: './src/fonts/*.ttf',
         libs: './src/libs/**/*.*',
@@ -63,7 +63,7 @@ const paths = {
 function js() {
     return gulp
         .src(paths.src.js)
-        .pipe(concat('main.js'))
+        .pipe(concat('index.js'))
         .pipe(uglify())
         .pipe(gulp.dest(paths.build.js))
         .pipe(browserSync.stream());
@@ -96,7 +96,7 @@ function libs() {
 function html() {
     return gulp
         .src(paths.src.html)
-        .pipe(fileInclude())
+        .pipe(fileInclude({prefix: '@@',  basepath: '@file' }))
         .pipe(gulp.dest(paths.build.html))
         .pipe(browserSync.stream());
 }
@@ -157,6 +157,7 @@ function watchFiles() {
     gulp.watch(paths.src.libs, libs);
     gulp.watch(paths.src.img, img);
 }
+
 
 const fonts = gulp.series(ttfToWoff, ttfToWoff2);
 const mainTasks = gulp.series(clean, gulp.parallel(html, style, js, fonts, libs, img));

@@ -6,10 +6,9 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "img:squoosh": "squoosh-cli --mozjpeg '{\"quality\":75}' ./src/img/* -d ./dist/img"
+    "dev": "gulp"
   },
   "devDependencies": {
-    "@squoosh/cli": "^0.7.1",
     "browser-sync": "^3.0.4",
     "gulp": "^5.0.1",
     "gulp-autoprefixer": "^9.0.0",
@@ -30,6 +29,7 @@
   "dependencies": {
     "autoprefixer": "^10.4.21",
     "del": "^8.0.0",
-    "normalize.css": "^8.0.1"
+    "normalize.css": "^8.0.1",
+    "swiper": "^11.2.10"
   }
 }
