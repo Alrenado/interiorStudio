@@ -1,8 +1,10 @@
 // gulp
 import gulp from 'gulp';
+import debug from 'gulp-debug';
+import flatten from 'gulp-flatten'; // Remove or replace relative path for files
 
 //html
-import htmlmin from 'gulp-htmlmin';
+import htmlMin from 'gulp-htmlmin';
 
 //css
 //scss
@@ -22,7 +24,9 @@ import uglify from 'gulp-uglify';
 import concat from 'gulp-concat';
 
 // img
-import imagemin, {mozjpeg} from 'gulp-imagemin';
+import svgSprite from 'gulp-svg-sprite';
+import webp from 'gulp-webp';
+import avif from './gulp/gulp-avif.js'
 
 // clear files
 import {deleteAsync as del} from 'del';
@@ -49,7 +53,7 @@ const paths = {
         html: './src/*.html',
         css: './src/scss/*.scss',
         js: './src/js/script.js',
-        img: './src/img/**/*.{jpg,jpeg,png,gif,webp,ico,svg}',
+        img: './src/img/**/*.{jpg,jpeg,png,gif,webp,ico}',
         fonts: './src/fonts/*.ttf',
         libs: './src/libs/**/*.*',
     },
@@ -95,7 +99,9 @@ function html() {
     return gulp.src([
         './src/html/pages/**/index.html',
         './src/html/pages/*.html'
-    ], { base: './src/html/pages' })
+    ], {
+        base: './src/html/pages'
+    })
         .pipe(fileInclude({
             prefix: '@@',
             basepath: '@file'
@@ -107,7 +113,7 @@ function html() {
             file.dirname  = '';
             file.basename = pageName;
         }))
-        .pipe(htmlmin({
+        .pipe(htmlMin({
             collapseWhitespace: true,
             minifyCSS: true,
             minifyJS: true,
@@ -120,15 +126,50 @@ function html() {
 }
 
 
-function img() {
-    return gulp
-        .src(paths.src.img, {encoding: false})
-        .pipe(imagemin())
-        .pipe(gulp.dest(paths.build.img))
-        .pipe(gulp.src('./src/img/**/*.svg'))
-        .pipe(gulp.dest(paths.build.img))
-        .pipe(browserSync.stream());
 
+function webpBuild() {
+    return gulp
+        .src('./src/img/**/*.{jpg,jpeg,png}')
+        .pipe(webp({quality: 80}))
+        .on('error', function (err) {
+            console.error('WebP Error:', err);
+            this.emit('end');
+        })
+        .pipe(flatten())
+        .pipe(debug({title: 'After WEBP:'}))
+        .pipe(gulp.dest('./dist/img/webp'));
+}
+
+function avifBuild() {
+    return gulp
+        .src('./src/img/**/*.{jpg,png}')
+        .pipe(avif({quality : 80}))
+        .on('error', function (err) {
+            console.error('Avif Error:', err);
+            this.emit('end');
+        })
+        .pipe(flatten())
+        .pipe(debug({title: 'After avif:'}))
+        .pipe(gulp.dest('./dist/img/avif'));
+}
+
+const svgSpriteConfig = {
+    mode: {
+        symbol: {
+            sprite: 'sprite.svg'
+        }
+    }
+};
+
+function spriteBuild() {
+    return gulp
+        .src('./src/img/**/*.svg')
+        .pipe(svgSprite(svgSpriteConfig))
+        .on('error', function (error) {
+            console.error('SVG Sprite Error:', error);
+            this.emit('end');
+        })
+        .pipe(gulp.dest(paths.build.img));
 }
 
 function clean() {
@@ -141,8 +182,6 @@ function reload(done) {
     bs.reload();
     done();
 }
-
-
 
 function server() {
     bs.init({
@@ -171,26 +210,18 @@ function ttfToWoff2() {
         .pipe(gulp.dest(paths.build.fonts));
 }
 
-// function watchFiles() {
-//     gulp.watch(paths.src.html, html);
-//     gulp.watch(paths.src.css, style);
-//     gulp.watch(paths.src.js, js);
-//     gulp.watch(paths.src.libs, libs);
-//     gulp.watch(paths.src.img, img);
-// }
-
 function watchFiles() {
     gulp.watch('src/html//*.html', gulp.series(html, reload));
     gulp.watch('src/scss//*.scss', style);
     gulp.watch('src/js/**/*.js', gulp.series(js, reload));
-    gulp.watch(paths.src.img, img);
+    gulp.watch(paths.src.img, gulp.parallel(webpBuild, avifBuild, spriteBuild));
     gulp.watch(paths.src.fonts, gulp.series(ttfToWoff, ttfToWoff2));
     gulp.watch(paths.src.libs, libs);
 }
 
 
 const fonts = gulp.series(ttfToWoff, ttfToWoff2);
-const mainTasks = gulp.series(clean, gulp.parallel(html, style, js, fonts, libs, img));
+const mainTasks = gulp.series(clean, gulp.parallel(html, style, js, fonts, libs, webpBuild, avifBuild, spriteBuild));
 const dev = gulp.series(mainTasks, gulp.parallel(watchFiles, server));
 
 const build = gulp.series(mainTasks);
