@@ -227,8 +227,8 @@ template,
   display: none;
 }
 
-body {
-  color: white;
+.header {
+  background-color: white;
 }
 
 body {

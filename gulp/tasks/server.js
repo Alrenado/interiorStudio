@@ -1,17 +1,14 @@
-import gulp from 'gulp';
-import serveStatic from 'serve-static';
-import browserSync from 'browser-sync';
+import { plugins } from "../config/plugins.js";
+import { paths } from "../config/path.js";
 
-import {paths} from "../config/path.js";
+const bs = plugins.browserSync.create();
 
-const bs = browserSync.create();
-
-function server() {
+function host() {
     bs.init({
         server: {
             baseDir: paths.build.html,
             middleware: [
-                serveStatic('dist', { extensions: ['html'] })
+                plugins.serveStatic('dist', { extensions: ['html'] })
             ]
         },
         notify: false,
@@ -24,7 +21,7 @@ function reload(done) {
     done();
 }
 
-export {
-    server,
+export const server = {
+    host,
     reload
 };

@@ -1,10 +1,8 @@
-import gulp from "gulp";
-import {deleteAsync as del} from 'del';
-
+import { plugins } from "../config/plugins.js";
 import { paths } from "../config/path.js";
 
 function clean() {
-    return del('./dist/');
+    return plugins.del(paths.build.html);
 }
 
 export {

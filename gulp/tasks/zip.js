@@ -1,14 +1,14 @@
 import gulp from "gulp";
-import { deleteAsync } from "del";
-import gulpZip from "gulp-zip";
-
 import {paths} from "../config/path.js";
+import {plugins} from "../config/plugins.js";
 
 function zip() {
-    return deleteAsync(`./${paths.basePathName}.zip`).then(() => {
+    return plugins.del(`./${paths.basePathName}.zip`).then(() => {
         return gulp
             .src(`${paths.buildFolder}/**/*.*`)
-            .pipe(gulpZip(`${paths.basePathName}.zip`))
+            .pipe(plugins.errorConfig('zip'))
+            .pipe(plugins.gulpZip(`${paths.basePathName}.zip`))
+            .pipe(plugins.debugConfig('zip after build complete.'))
             .pipe(gulp.dest('./'));
     });
 }

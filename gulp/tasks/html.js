@@ -1,9 +1,7 @@
 import gulp from 'gulp';
-import htmlMin from 'gulp-htmlmin';
-import fileInclude from "gulp-file-include";
-import rename from "gulp-rename";
-import browserSync from "browser-sync";
-import { paths } from "../config/path.js";
+
+import {paths} from "../config/path.js";
+import {plugins} from "../config/plugins.js";
 
 function html() {
     return gulp.src([
@@ -12,18 +10,19 @@ function html() {
     ], {
         base: paths.src.htmlPages
     })
-        .pipe(fileInclude({
+        .pipe(plugins.errorConfig('html'))
+        .pipe(plugins.fileInclude({
             prefix: '@@',
             basepath: '@file'
         }))
-        .pipe(rename(file => {
+        .pipe(plugins.rename(file => {
             const pageName = file.basename === 'index'
                 ? file.dirname
                 : file.basename;
-            file.dirname  = '';
+            file.dirname = '';
             file.basename = pageName;
         }))
-        .pipe(htmlMin({
+        .pipe(plugins.htmlMin({
             collapseWhitespace: true,
             minifyCSS: true,
             minifyJS: true,
@@ -32,7 +31,8 @@ function html() {
             removeComments: true,
         }))
         .pipe(gulp.dest(paths.build.html))
-        .pipe(browserSync.stream());
+        .pipe(plugins.debugConfig('html after build complete.'))
+        .pipe(plugins.browserSync.stream());
 }
 
 export {

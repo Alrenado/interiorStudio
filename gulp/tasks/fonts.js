@@ -1,23 +1,26 @@
 import gulp from 'gulp';
-import ttf2woff from "gulp-ttf2woff";
-import ttf2woff2 from "gulp-ttf2woff2";
 import { paths } from "../config/path.js";
+import { plugins } from "../config/plugins.js";
 
 function ttfToWoff() {
     return gulp
         .src(paths.src.fonts, {encoding: false})
-        .pipe(ttf2woff())
+        .pipe(plugins.errorConfig('ttfToWoff'))
+        .pipe(plugins.ttf2woff())
+        .pipe(plugins.debugConfig('ttfToWoff after build complete.'))
         .pipe(gulp.dest(paths.build.fonts));
 }
 
 function ttfToWoff2() {
     return gulp
         .src(paths.src.fonts, {encoding: false})
-        .pipe(ttf2woff2())
+        .pipe(plugins.errorConfig('ttfToWoff2'))
+        .pipe(plugins.ttf2woff2())
+        .pipe(plugins.debugConfig('ttfToWoff2 after build complete.'))
         .pipe(gulp.dest(paths.build.fonts));
 }
 
-export {
+export const fonts = {
     ttfToWoff,
     ttfToWoff2
-};
+}
