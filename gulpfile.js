@@ -1,25 +1,19 @@
 // gulp
 import gulp from 'gulp';
 
-import { paths } from "./gulp/config/path.js";
+import paths from "./gulp/config/path.js";
 
-import { clean } from "./gulp/tasks/clean.js";
+import clean from "./gulp/tasks/clean.js";
+import server from './gulp/tasks/server.js';
+import zip from './gulp/tasks/zip.js';
+import deploy from './gulp/tasks/deploy.js';
 
-import { server } from './gulp/tasks/server.js';
-
-import { libs } from './gulp/tasks/libs.js';
-
-import { js } from './gulp/tasks/javascript.js';
-
-import { style } from './gulp/tasks/scss.js';
-
-import { fonts } from './gulp/tasks/fonts.js';
-
-import { images } from './gulp/tasks/images.js';
-
-import { html } from "./gulp/tasks/html.js";
-
-import { zip } from './gulp/tasks/zip.js';
+import libs from './gulp/tasks/libs.js';
+import js from './gulp/tasks/javascript.js';
+import style from './gulp/tasks/scss.js';
+import fonts from './gulp/tasks/fonts.js';
+import images from './gulp/tasks/images.js';
+import html from "./gulp/tasks/html.js";
 
 function watchFiles() {
     gulp.watch(paths.watch.html, gulp.series(html, server.reload));
@@ -33,6 +27,7 @@ function watchFiles() {
         images.spriteBuild
     ));
 }
+
 
 
 const font = gulp.series(fonts.ttfToWoff, fonts.ttfToWoff2);
@@ -52,3 +47,4 @@ gulp.task('fonts', font);
 gulp.task('clean', clean);
 gulp.task('build', build);
 gulp.task('zip', zip);
+gulp.task('deploy', deploy);

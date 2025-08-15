@@ -1,9 +1,9 @@
 import gulp from 'gulp';
 
-import {paths} from "../config/path.js";
-import {plugins} from "../config/plugins.js";
+import paths from "../config/path.js";
+import plugins from "../config/plugins.js";
 
-function libs() {
+export default function libs() {
     return gulp
         .src(paths.src.libs)
         .pipe(plugins.errorConfig('libs'))
@@ -12,6 +12,3 @@ function libs() {
         .pipe(plugins.browserSync.stream());
 }
 
-export {
-    libs
-};

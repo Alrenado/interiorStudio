@@ -1,8 +1,8 @@
 import gulp from "gulp";
-import {paths} from "../config/path.js";
-import {plugins} from "../config/plugins.js";
+import paths from "../config/path.js";
+import plugins from "../config/plugins.js";
 
-function zip() {
+export default function zip() {
     return plugins.del(`./${paths.basePathName}.zip`).then(() => {
         return gulp
             .src(`${paths.buildFolder}/**/*.*`)
@@ -11,8 +11,4 @@ function zip() {
             .pipe(plugins.debugConfig('zip after build complete.'))
             .pipe(gulp.dest('./'));
     });
-}
-
-export {
-    zip
 }

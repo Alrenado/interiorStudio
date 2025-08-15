@@ -1,10 +1,7 @@
-import { plugins } from "../config/plugins.js";
-import { paths } from "../config/path.js";
+import plugins from "../config/plugins.js";
+import paths from "../config/path.js";
 
-function clean() {
+export default function clean() {
     return plugins.del(paths.build.html);
 }
 
-export {
-    clean
-};

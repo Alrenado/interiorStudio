@@ -1,6 +1,6 @@
 import gulp from 'gulp';
-import { paths } from "../config/path.js";
-import { plugins } from "../config/plugins.js";
+import paths from "../config/path.js";
+import plugins from "../config/plugins.js";
 
 function ttfToWoff() {
     return gulp
@@ -19,8 +19,9 @@ function ttfToWoff2() {
         .pipe(plugins.debugConfig('ttfToWoff2 after build complete.'))
         .pipe(gulp.dest(paths.build.fonts));
 }
-
-export const fonts = {
+const fonts = {
     ttfToWoff,
     ttfToWoff2
 }
+
+export default fonts;

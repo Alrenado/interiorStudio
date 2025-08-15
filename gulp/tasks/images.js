@@ -1,6 +1,6 @@
 import gulp from 'gulp';
-import { paths } from "../config/path.js";
-import { plugins } from "../config/plugins.js";
+import paths from "../config/path.js";
+import plugins from "../config/plugins.js";
 
 const compressLevels = {
     first: 90,
@@ -63,9 +63,11 @@ function spriteBuild() {
         .pipe(gulp.dest(paths.build.svg));
 }
 
-export const images = {
+const images = {
     webpBuild,
     avifBuild,
     spriteBuild,
     compressLevels
 }
+
+export default images;

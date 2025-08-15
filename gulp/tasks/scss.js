@@ -1,10 +1,10 @@
 import gulp from 'gulp';
 
-import { paths } from "../config/path.js";
-import {plugins} from "../config/plugins.js";
+import paths from "../config/path.js";
+import plugins from "../config/plugins.js";
 
 
-function style() {
+export default function style() {
     return gulp
         .src(paths.src.css)
         .pipe(plugins.errorConfig('css'))
@@ -18,7 +18,3 @@ function style() {
         .pipe(plugins.debugConfig('css after build complete.'))
         .pipe(plugins.browserSync.stream());
 }
-
-export {
-    style
-};

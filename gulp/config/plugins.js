@@ -38,6 +38,11 @@ import serveStatic from 'serve-static';
 //zip
 import gulpZip from "gulp-zip";
 
+//git
+import git from "gulp-git";
+import ghPages from "gulp-gh-pages";
+import replace from "gulp-replace";
+
 import debug from "gulp-debug";
 import flatten from "gulp-flatten";
 
@@ -57,7 +62,7 @@ const debugConfig = (debugName) => {
     })
 }
 
-export const plugins = {
+const plugins = {
     errorConfig,
     debugConfig,
 
@@ -99,5 +104,11 @@ export const plugins = {
 
     flatten,
     debug,
-    del
+    del,
+
+    git,
+    ghPages,
+    replace,
 }
+
+export default plugins;

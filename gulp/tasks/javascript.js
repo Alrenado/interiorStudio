@@ -1,9 +1,9 @@
 import gulp from 'gulp';
 
-import {paths} from "../config/path.js";
-import {plugins} from "../config/plugins.js";
+import paths from "../config/path.js";
+import plugins from "../config/plugins.js";
 
-function js() {
+export default function js() {
     return gulp
         .src(paths.src.js)
         .pipe(plugins.errorConfig('js'))
@@ -13,7 +13,3 @@ function js() {
         .pipe(plugins.debugConfig('js after build complete.'))
         .pipe(plugins.browserSync.stream());
 }
-
-export {
-    js
-};

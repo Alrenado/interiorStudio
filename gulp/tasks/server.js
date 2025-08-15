@@ -1,5 +1,5 @@
-import { plugins } from "../config/plugins.js";
-import { paths } from "../config/path.js";
+import plugins from "../config/plugins.js";
+import paths from "../config/path.js";
 
 const bs = plugins.browserSync.create();
 
@@ -21,7 +21,9 @@ function reload(done) {
     done();
 }
 
-export const server = {
+const server = {
     host,
     reload
 };
+
+export default server;

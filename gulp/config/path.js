@@ -5,7 +5,7 @@ const src = './src';
 
 const basePathName = nodePath.basename(nodePath.resolve());
 
-const paths = {
+export const paths = {
     build: {
         html: `${dist}/`,
         css: `${dist}/styles`,
@@ -17,6 +17,7 @@ const paths = {
 
         fonts: `${dist}/fonts`,
         libs: `${dist}/libs`,
+        deploy: `${dist}/**/*`,
     },
 
     src: {
@@ -51,6 +52,5 @@ const paths = {
     basePathName,
 }
 
-export {
-    paths
-};
+
+export default paths;

@@ -1,9 +1,9 @@
 import gulp from 'gulp';
 
-import {paths} from "../config/path.js";
-import {plugins} from "../config/plugins.js";
+import paths from "../config/path.js";
+import plugins from "../config/plugins.js";
 
-function html() {
+export default function html() {
     return gulp.src([
         paths.src.htmlIndex,
         paths.src.html
@@ -33,8 +33,4 @@ function html() {
         .pipe(gulp.dest(paths.build.html))
         .pipe(plugins.debugConfig('html after build complete.'))
         .pipe(plugins.browserSync.stream());
-}
-
-export {
-    html
 }
