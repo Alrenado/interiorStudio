@@ -19,9 +19,6 @@ function ttfToWoff2() {
         .pipe(plugins.debugConfig('ttfToWoff2 after build complete.'))
         .pipe(gulp.dest(paths.build.fonts));
 }
-const fonts = {
-    ttfToWoff,
-    ttfToWoff2
-}
 
+const fonts = gulp.parallel(ttfToWoff, ttfToWoff2)
 export default fonts;

@@ -14,6 +14,7 @@ export const paths = {
         svg: `${dist}/img/svg`,
         webp: `${dist}/img/webp`,
         avif: `${dist}/img/avif`,
+        png: `${dist}/img/png`,
 
         fonts: `${dist}/fonts`,
         libs: `${dist}/libs`,
@@ -29,6 +30,7 @@ export const paths = {
         js: `${src}/js/script.js`,
 
         img: `${src}/img/**/*.{jpg,jpeg,png}`,
+        png: `${src}/img/**/*.png`,
         svg: `${src}/img/**/*.svg`,
 
         fonts: `${src}/fonts/*.ttf`,
