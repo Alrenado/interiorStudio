@@ -5,6 +5,8 @@
 @use '../../components/header';
 @use '../../components/footer';
 
+@use '../../components/assets/button';
+
 body{
   background-color: black;
   @include mixins.fontInit(

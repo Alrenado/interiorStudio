@@ -11,11 +11,11 @@
         </div>
         <div class="header__section">
             <p class="header__lang">En</p>
-            <div class="header__button-container">
-                <div class="header__button">
-                    <p class="header__button">Send Request</p>
-                </div>
-            </div>
+            @@include('assets/button.html', {
+                "class": "header",
+                "text": "Send Request",
+                "type": "white",
+            })
         </div>
 
     </nav>
