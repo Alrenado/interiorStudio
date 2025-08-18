@@ -1,6 +1,60 @@
+@use '../components/mixins';
+@use '../components/variables';
+@use "sass:map";
 
 
 .header{
+  padding: 2rem 4.5rem;
+
+  position: fixed;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+
   background-color: black;
+
+
+  @include mixins.fontInit(
+          $family: 'Montserrat',
+          $font-weight: 600,
+          $font-size: 0.68rem
+  );
+
+  color: variables.$white;
+
+  &__logo{
+    @include mixins.fontInit(
+            $family: 'Montserrat',
+            $font-weight: 600,
+            $font-size: 1rem
+    );
+    //letter-spacing: 100%;
+  }
+
+  &__navbar{
+    max-width: 99rem;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 12.3rem;
+  }
+
+  &__menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4.5rem;
+  }
+
 }
 

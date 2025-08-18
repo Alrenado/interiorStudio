@@ -1,5 +1,6 @@
 @use '../../components/mixins';
 @use '../../components/variables';
+@use "sass:map";
 
 .button-container {
   width: 100%;
@@ -13,15 +14,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 
   white-space: nowrap;
-  border: black solid 0.2rem;
+  cursor: pointer;
+  outline: none;
 
-  .button-container__button {
+  transition: background-color 0.3s ease-in-out,
+  border 0.3s ease-in-out,
+  color 0.3s ease-in-out;
 
-  }
-
-  .button-container__button-text {
+  &__button-text {
     @include mixins.fontInit(
             $family: 'Montserrat',
             $font-weight: 600,
@@ -29,33 +32,54 @@
     );
   }
 
-  $buttonThemes: (
-          white: (
-                  bg: transparent,
-                  text: variables.$white,
-                  border: variables.$whiteBtn
+  &__button {
+    background: none;
+  }
+
+  $buttonType: (
+          light: (
+                  default: (
+                          bg: transparent,
+                          text: map.get($grid-colors, $name),
+                          border: variables.$whiteBtn
+                  ),
+                  hover: (
+                          bg: variables.$white,
+                          text: variables.$black,
+                          border: variables.$white
+                  ),
           ),
-          black: (
-                  bg: white,
-                  text: white,
-                  border: variables.$whiteBtn
+          dark: (
+                  default: (
+                          bg: variables.$white,
+                          text: variables.$black,
+                          border: variables.$white
+                  ),
+                  hover: (
+                          bg: variables.$whiteBtn,
+                          text: variables.$white,
+                          border: variables.$whiteBtn
+                  ),
           ),
   );
 
-  @each $name, $cfg in $buttonThemes {
-    &.button-container_#{$name} {
-      background: map-get($cfg, bg);
-      border-color: map-get($cfg, border);
+  @each $type, $states in $buttonType {
+    &.button-container_#{"" + $type} {
+      background: map.get(map.get($states, default), bg);
+      border: 0.2rem solid map.get(map.get($states, default), border);
 
-      .button-container__button-text {
-        color: map-get($cfg, text);
+      & .button-container__button-text {
+        color: map.get(map.get($states, default), text);
       }
 
-      &.button-container_#{$name}:hover{
+      &:hover {
+        background: map.get(map.get($states, hover), bg);
+        border: 0.2rem solid map.get(map.get($states, hover), border);
 
+        & .button-container__button-text {
+          color: map.get(map.get($states, hover), text);
+        }
       }
     }
   }
-
-
 }

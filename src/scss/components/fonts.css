@@ -1,0 +1,18 @@
+/* Error: Declarations may only be used within style rules.
+ *   ,
+ * 4 |   font-family: $family;
+ *   |   ^^^^^^^^^^^^^^^^^^^^
+ *   '
+ *   mixins.scss 4:3  font()
+ *   fonts.scss 5:1   root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Declarations may only be used within style rules.\a   \2577 \a 4 \2502    font-family: $family;\d\a   \2502    ^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   mixins.scss 4:3  font()\a   fonts.scss 5:1   root stylesheet";
+}

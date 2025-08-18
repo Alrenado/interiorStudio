@@ -1,3 +1,5 @@
+@use '../components/variables';
+
 @mixin font($family: 'Montserrat',$weight: 300, $style: normal, $filename: 'Montserrat-Light'){
   font-family: $family;
   font-weight: $weight;
@@ -12,4 +14,27 @@
   font-family: $family, $alt;
   font-weight: $font-weight;
   font-size: clamp(calc(($font-size * $clampVar) / 100), 1.2vh, $font-size);
+}
+
+@mixin media-breakpoint-down($name) {
+  $value: variables.breakpoint($name);
+  @media (max-width: $value) {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-up($name) {
+  $value: variables.breakpoint($name);
+  @media (min-width: $value) {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-between($lower, $upper) {
+  $min: variables.breakpoint($lower);
+  $max: variables.breakpoint($upper);
+
+  @media (min-width: $min) and (max-width: $max) {
+    @content;
+  }
 }

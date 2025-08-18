@@ -1,3 +1,4 @@
+@use "sass:map";
 
 // colors
 
@@ -11,11 +12,48 @@ $grayTitleHrBlackBg: rgba(255, 255, 255, 0.04);
 $grayHr: rgba(49, 49, 49, 0.2);
 $whiteBtn: rgba(253, 253, 253, 0.32);
 
+$grid-colors: (
+        white: rgba(255, 255, 255, 1),
+        black: rgba(8, 8, 8, 1),
+        gray: rgba(130, 130, 130, 1),
+        grayTitleWhiteBg: rgba(130, 130, 130, 0.32),
+        grayTitleHrWhiteBg: rgba(130, 130, 130, 0.16),
+        grayTitleBlackBg: rgba(255, 255, 255, 0.13),
+        grayTitleHrBlackBg: rgba(255, 255, 255, 0.04),
+        grayHr: rgba(49, 49, 49, 0.2),
+        whiteBtn: rgba(253, 253, 253, 0.32)
+);
+
 // media
 
-$mediaExtraSmall: 375px;
-$mediaSmall: 575px;
-$mediaMobile: 768px;
-$mediaTable: 1024px;
-$mediaDesktop: 1440px;
-$mediaExtraLarge: 1920px;
+$grid-breakpoints: (
+        extraSmall: 375px,
+        small: 576px,
+        mobile: 768px,
+        tablet: 1024px,
+        desktop: 1440px,
+        extraLarge: 1920px
+);
+
+// font-weights
+
+$thin: 100;
+$extraLight: 100;
+$light: 100;
+$regular: 100;
+$medium: 100;
+$semiBold: 100;
+$bold: 100;
+$extraBold: 100;
+$heavy: 100;
+$black: 100;
+
+
+@function breakpoint($name) {
+  @return map.get($grid-breakpoints, $name);
+}
+
+@function colors($name) {
+  @return map.get($grid-colors, $name);
+}
+
