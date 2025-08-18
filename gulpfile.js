@@ -30,9 +30,9 @@ const build = gulp.series(mainTasks);
 
 gulp.task('default', dev);
 gulp.task('fonts', fonts);
-gulp.task('image', images);
 gulp.task('clean', clean);
 gulp.task('build', build);
 gulp.task('zip', zip);
 gulp.task('deploy', deploy);
+gulp.task('image', images);
 

@@ -40,7 +40,7 @@
           light: (
                   default: (
                           bg: transparent,
-                          text: map.get($grid-colors, $name),
+                          text: variables.$white,
                           border: variables.$whiteBtn
                   ),
                   hover: (

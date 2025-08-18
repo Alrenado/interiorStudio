@@ -1,4 +1,5 @@
 @use '../components/variables';
+@use "sass:math";
 
 @mixin font($family: 'Montserrat',$weight: 300, $style: normal, $filename: 'Montserrat-Light'){
   font-family: $family;
@@ -10,10 +11,41 @@
           url('../fonts/#{$filename}.woff') format('woff');
 }
 
-@mixin fontInit($family: 'Montserrat', $alt: 'sans-serif', $font-weight: 400, $font-size: 2rem, $clampVar: 20){
+@function strip-unit($value) {
+  @if type-of($value) == "number" and not unitless($value) {
+    @return math.div($value, ($value * 0 + 1));
+  }
+  @return $value;
+}
+
+@function get-unit($value) {
+  @if type-of($value) == "number" {
+    @return math.unit($value);
+  }
+  @return null;
+}
+
+@mixin fontInit(
+  $family: 'Montserrat',
+  $alt: 'sans-serif',
+  $font-weight: 400,
+  $font-size: 1rem,
+  $font-scale: 0.2,
+  $min-width: 375px,
+  $max-width: 1440px
+){
   font-family: $family, $alt;
   font-weight: $font-weight;
-  font-size: clamp(calc(($font-size * $clampVar) / 100), 1.2vh, $font-size);
+
+  $unit: get-unit($font-size);
+  $base: strip-unit($font-size);
+  $min: $base * (1 - $font-scale);
+
+  font-size: clamp(
+          #{$min}#{$unit},
+          calc(#{$min}#{$unit} + (#{$base - $min}) * ((100vw - #{strip-unit($min-width)}px) / #{strip-unit($max-width - $min-width)})),
+          #{$base}#{$unit}
+  );
 }
 
 @mixin media-breakpoint-down($name) {
