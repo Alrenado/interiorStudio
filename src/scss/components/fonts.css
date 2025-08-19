@@ -1,18 +1,44 @@
-/* Error: Declarations may only be used within style rules.
- *   ,
- * 5 |   font-family: $family;
- *   |   ^^^^^^^^^^^^^^^^^^^^
- *   '
- *   mixins.scss 5:3  font()
- *   fonts.scss 5:1   root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Declarations may only be used within style rules.\a   \2577 \a 5 \2502    font-family: $family;\d\a   \2502    ^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   mixins.scss 5:3  font()\a   fonts.scss 5:1   root stylesheet";
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/Montserrat-Light.woff2") format("woff2"), url("../fonts/Montserrat-Light.woff") format("woff");
 }
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/Montserrat-Regular.woff2") format("woff2"), url("../fonts/Montserrat-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/Montserrat-SemiBold.woff2") format("woff2"), url("../fonts/Montserrat-SemiBold.woff") format("woff");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/Montserrat-Bold.woff2") format("woff2"), url("../fonts/Montserrat-Bold.woff") format("woff");
+}
+@font-face {
+  font-family: "Adieu";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/Adieu-BoldSlanted.woff2") format("woff2"), url("../fonts/Adieu-BoldSlanted.woff") format("woff");
+}
+@font-face {
+  font-family: "Freight";
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/Freight-Big-Light-Italic.woff2") format("woff2"), url("../fonts/Freight-Big-Light-Italic.woff") format("woff");
+}
+
+/*# sourceMappingURL=fonts.css.map */

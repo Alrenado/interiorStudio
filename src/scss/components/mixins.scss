@@ -1,51 +1,54 @@
 @use '../components/variables';
 @use "sass:math";
+@use "sass:meta";
 
-@mixin font($family: 'Montserrat',$weight: 300, $style: normal, $filename: 'Montserrat-Light'){
-  font-family: $family;
-  font-weight: $weight;
-  font-style: $style;
-  font-display: swap;
-  src:
-          url('../fonts/#{$filename}.woff2') format('woff2'),
-          url('../fonts/#{$filename}.woff') format('woff');
+@mixin font($family: 'Montserrat',$weight: 300, $style: normal, $filename: 'Montserrat-Light') {
+  @font-face {
+    font-family: $family;
+    font-weight: $weight;
+    font-style: $style;
+    font-display: swap;
+    src: url('../fonts/#{$filename}.woff2') format('woff2'),
+    url('../fonts/#{$filename}.woff') format('woff');
+  }
 }
 
 @function strip-unit($value) {
-  @if type-of($value) == "number" and not unitless($value) {
+  @if meta.type-of($value) == "number" and not math.is-unitless($value) {
     @return math.div($value, ($value * 0 + 1));
   }
   @return $value;
 }
 
 @function get-unit($value) {
-  @if type-of($value) == "number" {
+  @if meta.type-of($value) == "number" {
     @return math.unit($value);
   }
   @return null;
 }
 
-@mixin fontInit(
+@function clamp-init($value, $scale: .2, $min-width: 375px, $max-width: 1440px) {
+  $min: $value * (1 - $scale);
+  $fluid: calc(
+          #{$min} + (#{strip-unit($value - $min)}) * ((100vw - #{$min-width}) / #{strip-unit($max-width - $min-width)})
+  );
+  @return clamp(#{$min}, #{$fluid}, #{$value});
+}
+
+@mixin font-init(
   $family: 'Montserrat',
   $alt: 'sans-serif',
-  $font-weight: 400,
+  $font-weight: variables.$regular,
   $font-size: 1rem,
   $font-scale: 0.2,
   $min-width: 375px,
-  $max-width: 1440px
-){
+  $max-width: 1440px,
+  $letter-spacing: normal
+) {
   font-family: $family, $alt;
   font-weight: $font-weight;
-
-  $unit: get-unit($font-size);
-  $base: strip-unit($font-size);
-  $min: $base * (1 - $font-scale);
-
-  font-size: clamp(
-          #{$min}#{$unit},
-          calc(#{$min}#{$unit} + (#{$base - $min}) * ((100vw - #{strip-unit($min-width)}px) / #{strip-unit($max-width - $min-width)})),
-          #{$base}#{$unit}
-  );
+  letter-spacing: $letter-spacing;
+  font-size: clamp-init($font-size, $font-scale);
 }
 
 @mixin media-breakpoint-down($name) {
@@ -68,5 +71,23 @@
 
   @media (min-width: $min) and (max-width: $max) {
     @content;
+  }
+}
+
+@mixin button(
+  $selector: "default",
+  $padding-vertical: 1rem,
+  $padding-horizontal: 1rem,
+  $padding-scale: .5,
+  $font-sizes: 1rem,
+) {
+  .button-container {
+    padding: clamp-init($padding-vertical, $padding-scale) clamp-init($padding-horizontal, $padding-scale);
+
+    &__button-text {
+      @include font-init(
+              $font-size: $font-sizes,
+      );
+    }
   }
 }

@@ -9,7 +9,7 @@
   max-width: fit-content;
   max-height: fit-content;
 
-  padding: clamp(0.5rem, 2vw, 1rem) clamp(0.5rem, 2vw, 1rem);
+  padding: mixins.clamp-init(1rem, .5) mixins.clamp-init(1rem, .5);
 
   display: flex;
   justify-content: center;
@@ -25,10 +25,10 @@
   color 0.3s ease-in-out;
 
   &__button-text {
-    @include mixins.fontInit(
+    @include mixins.font-init(
             $family: 'Montserrat',
-            $font-weight: 600,
-            $font-size: 0.68rem
+            $font-weight: variables.$semi-bold,
+            $font-size: 1.12rem,
     );
   }
 
@@ -41,7 +41,7 @@
                   default: (
                           bg: transparent,
                           text: variables.$white,
-                          border: variables.$whiteBtn
+                          border: variables.$white-btn
                   ),
                   hover: (
                           bg: variables.$white,
@@ -56,9 +56,9 @@
                           border: variables.$white
                   ),
                   hover: (
-                          bg: variables.$whiteBtn,
+                          bg: variables.$white-btn,
                           text: variables.$white,
-                          border: variables.$whiteBtn
+                          border: variables.$white-btn
                   ),
           ),
   );

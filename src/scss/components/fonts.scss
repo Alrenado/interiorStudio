@@ -1,12 +1,13 @@
 @use 'mixins';
+@use 'variables';
 @use "sass:map";
 
 
-@include mixins.font('Montserrat', 300, normal, 'Montserrat-Light');
-@include mixins.font('Montserrat', 400, normal, 'Montserrat-Regular');
-@include mixins.font('Montserrat', 600, normal, 'Montserrat-SemiBold');
-@include mixins.font('Montserrat', 700, normal, 'Montserrat-Bold');
+@include mixins.font('Montserrat', variables.$light, normal, 'Montserrat-Light');
+@include mixins.font('Montserrat', variables.$regular, normal, 'Montserrat-Regular');
+@include mixins.font('Montserrat', variables.$semi-bold, normal, 'Montserrat-SemiBold');
+@include mixins.font('Montserrat', variables.$bold, normal, 'Montserrat-Bold');
 
 
-@include mixins.font('Adieu', 700, normal, 'Adieu-BoldSlanted');
-@include mixins.font('Freight', 300, normal, 'Freight-Big-Light-Italic');
+@include mixins.font('Adieu', variables.$bold, normal, 'Adieu-BoldSlanted');
+@include mixins.font('Freight', variables.$light, normal, 'Freight-Big-Light-Italic');

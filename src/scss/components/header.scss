@@ -4,8 +4,8 @@
 @use "sass:math";
 
 
-.header{
-  padding: 2rem 4.5rem;
+.header {
+  padding: 1.8rem 4.5rem;
 
   position: fixed;
   width: 100%;
@@ -15,25 +15,25 @@
 
   background-color: black;
 
-
-  @include mixins.fontInit(
+  @include mixins.font-init(
           $family: 'Montserrat',
-          $font-weight: 600,
-          $font-size: 1.68rem
+          $font-weight: variables.$semi-bold,
+          $font-size: 1.12rem,
   );
 
   color: variables.$white;
 
-  &__logo{
-    @include mixins.fontInit(
+  &__logo {
+    @include mixins.font-init(
             $family: 'Montserrat',
-            $font-weight: 600,
-            $font-size: 1rem
+            $font-weight: variables.$regular,
+            $font-size: 1.3rem,
+            $letter-spacing: .25rem
     );
     //letter-spacing: 100%;
   }
 
-  &__navbar{
+  &__navbar {
     max-width: 99rem;
     width: 100%;
     margin: 0 auto;
@@ -46,16 +46,29 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    gap: 12.3rem;
   }
 
-  &__menu{
+  &__section:nth-child(1) {
+    gap: 10.2rem;
+  }
+
+  &__section:nth-child(2) {
+    gap: 6rem;
+  }
+
+  &__menu {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 4.5rem;
+    gap: 3.6rem;
   }
 
+  @include mixins.button(
+          $selector: ".header",
+          $padding-vertical: 1.8rem,
+          $padding-horizontal: 6.3rem,
+          $padding-scale: .5,
+          $font-sizes: 1.2rem,
+  )
 }
 

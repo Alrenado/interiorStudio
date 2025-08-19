@@ -1,33 +1,20 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1">
-    <meta name="description"
-          content="description">
 
-    <title>Document</title>
+@@include('../../components/head.html', {
+"description": "index",
+"title": "index",
+"style": "index",
+})
 
-<!--    <base href="https://alrenado.github.io/interiorStudio/"/>-->
-
-    <link rel="icon"
-          href=""
-          type="image/x-icon">
-
-    <link rel="stylesheet"
-          href="styles/index/style.min.css">
-
-</head>
 <body>
+@@include('../../components/header.html')
 
-    @@include('../../components/header.html')
+@@include('../../components/popups.html')
+@@include('../../components/footer.html')
 
-    @@include('../../components/popups.html')
-    @@include('../../components/footer.html')
+@@include('../../components/scripts.html')
 
-    @@include('../../components/scripts.html')
-
-    <a href="about">asdasdasdasdasd</a>
+<a href="about">asdasdasdasdasd</a>
 </body>
 </html>

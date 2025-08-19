@@ -15,6 +15,7 @@ import avif from '../gulp-avif.js'
 // import imageminSvgo from "imagemin-svgo";
 // import imageminPngquant from 'imagemin-pngquant';
 import through2 from 'through2';
+import newer from 'gulp-newer';
 
 
 //fonts
@@ -72,6 +73,7 @@ const debugConfig = (debugName) => {
 const plugins = {
     errorConfig,
     debugConfig,
+    through2,
 
     notify,
     plumber,
@@ -83,6 +85,7 @@ const plugins = {
     // imagemin,
     // imageminPngquant,
     // imageminOptipng,
+    newer,
 
     //fonts
     ttf2woff,

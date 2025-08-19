@@ -13,6 +13,9 @@ import js from './gulp/tasks/javascript.js';
 import style from './gulp/tasks/scss.js';
 import fonts from './gulp/tasks/fonts.js';
 import images from './gulp/tasks/images.js';
+
+import { pngBuild } from './gulp/tasks/images.js';
+
 import html from "./gulp/tasks/html.js";
 
 function watchFiles() {
@@ -21,12 +24,13 @@ function watchFiles() {
     gulp.watch(paths.watch.js, gulp.series(js, server.reload));
     gulp.watch(paths.watch.fonts, gulp.series(fonts, server.reload));
     gulp.watch(paths.watch.libs, gulp.series(libs, server.reload));
-    gulp.watch(paths.watch.libs, gulp.series(images, server.reload));
+    gulp.watch(paths.watch.img, gulp.series(images, server.reload));
 }
 
 const mainTasks = gulp.series(clean, gulp.parallel(html, style, js, fonts, libs, images));
+
 const dev = gulp.series(mainTasks, gulp.parallel(watchFiles, server.host));
-const build = gulp.series(mainTasks);
+const build = gulp.series(mainTasks, deploy);
 
 gulp.task('default', dev);
 gulp.task('fonts', fonts);
@@ -35,4 +39,3 @@ gulp.task('build', build);
 gulp.task('zip', zip);
 gulp.task('deploy', deploy);
 gulp.task('image', images);
-
