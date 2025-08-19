@@ -1,3 +1,4 @@
+
 <section class="header">
     <nav class="header__navbar">
         <div class="header__section">
@@ -12,12 +13,18 @@
             </ul>
         </div>
         <div class="header__section">
-            <p class="header__lang">En</p>
+            @@include('assets/select.html', {
+            "class": "header",
+            "name": "lang",
+            "options": ["En", "Ru", "Ua", "Gr"],
+            "type": "light"
+            })
+
             @@include('assets/button.html', {
-                "class": "header",
-                "text": "Send Request",
-                "type": "light",
-                "label": "header",
+            "class": "header",
+            "text": "Send Request",
+            "type": "light",
+            "label": "header",
             })
         </div>
     </nav>

@@ -27,7 +27,7 @@ export const paths = {
         htmlPages: `${src}/html/pages`,
 
         css: `${src}/scss/pages/**/style.scss`,
-        js: `${src}/js/script.js`,
+        js: `${src}/js/pages/**/script.js`,
 
         img: `${src}/img/**/*.{jpg,jpeg,png}`,
         png: `${src}/img/**/*.png`,

@@ -334,6 +334,57 @@ template,
   color: rgb(255, 255, 255);
 }
 
+.select-wrapper {
+  position: relative;
+  font-family: "Montserrat", "sans-serif";
+  font-weight: 600;
+  letter-spacing: normal;
+  font-size: clamp(0.896rem, calc(0.896rem + (0.224) * (100vw - 375px) / 1065), 1.12rem);
+  /* Style items (options): */
+  /* Hide the items when the select box is closed: */
+}
+.select-wrapper select {
+  display: none;
+}
+.select-wrapper .select-selected {
+  background-color: DodgerBlue;
+}
+.select-wrapper .select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+.select-wrapper .select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+.select-wrapper .select-items div, .select-wrapper .select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+.select-wrapper .select-items {
+  position: absolute;
+  background-color: DodgerBlue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+.select-wrapper .select-hide {
+  display: none;
+}
+.select-wrapper .select-items div:hover, .select-wrapper .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 body {
   background-color: black;
   font-family: "Montserrat", "sans-serif";

@@ -36,7 +36,7 @@
     background: none;
   }
 
-  $buttonType: (
+  $button-type: (
           light: (
                   default: (
                           bg: transparent,
@@ -63,7 +63,7 @@
           ),
   );
 
-  @each $type, $states in $buttonType {
+  @each $type, $states in $button-type {
     &.button-container_#{"" + $type} {
       background: map.get(map.get($states, default), bg);
       border: 0.2rem solid map.get(map.get($states, default), border);

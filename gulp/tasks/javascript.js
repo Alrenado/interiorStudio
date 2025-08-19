@@ -9,6 +9,7 @@ export default function js() {
         .pipe(plugins.errorConfig('js'))
         .pipe(plugins.concat('script.js'))
         .pipe(plugins.uglify())
+        .pipe(plugins.rename({suffix: '.min'}))
         .pipe(gulp.dest(paths.build.js))
         .pipe(plugins.debugConfig('js after build complete.'))
         .pipe(plugins.browserSync.stream());
