@@ -6,7 +6,13 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "gulp"
+    "dev": "gulp dev",
+    "fonts": "gulp fonts",
+    "clean": "gulp clean",
+    "build": "gulp build",
+    "zip": "gulp zip",
+    "deploy": "gulp deploy",
+    "images": "gulp images"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
@@ -25,7 +31,6 @@
     "gulp-htmlmin": "^5.0.1",
     "gulp-if": "^3.0.0",
     "gulp-imagemin": "^9.1.0",
-    "gulp-newer": "^1.4.0",
     "gulp-notify": "^5.0.0",
     "gulp-plumber": "^1.2.1",
     "gulp-rename": "^2.1.0",
@@ -44,13 +49,12 @@
     "sass": "^1.89.2",
     "serve-static": "^2.2.0",
     "sharp": "^0.34.3",
-    "through2": "^4.0.2"
+    "through2": "^4.0.2",
+    "imagemin-optipng": "^8.0.0",
+    "imagemin-pngquant": "^10.0.0"
   },
   "dependencies": {
-    "imagemin-mozjpeg": "^10.0.0",
-    "imagemin-optipng": "^8.0.0",
-    "imagemin-pngquant": "^10.0.0",
-    "imagemin-svgo": "^11.0.1",
+
     "normalize.css": "^8.0.1",
     "swiper": "^11.2.10"
   }

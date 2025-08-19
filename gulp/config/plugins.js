@@ -9,14 +9,10 @@ import {deleteAsync as del} from 'del';
 import svgSprite from 'gulp-svg-sprite';
 import webp from 'gulp-webp';
 import avif from '../gulp-avif.js'
-// import imagemin from "gulp-imagemin";
-// import imageminMozjpeg from "imagemin-mozjpeg";
-// import imageminOptipng from "imagemin-optipng";
-// import imageminSvgo from "imagemin-svgo";
-// import imageminPngquant from 'imagemin-pngquant';
+import imagemin from "gulp-imagemin";
+import optipng from "imagemin-optipng";
+import pngquant  from 'imagemin-pngquant';
 import through2 from 'through2';
-import newer from 'gulp-newer';
-
 
 //fonts
 import ttf2woff from "gulp-ttf2woff";
@@ -82,10 +78,9 @@ const plugins = {
     svgSprite,
     webp,
     avif,
-    // imagemin,
-    // imageminPngquant,
-    // imageminOptipng,
-    newer,
+    imagemin,
+    optipng,
+    pngquant,
 
     //fonts
     ttf2woff,

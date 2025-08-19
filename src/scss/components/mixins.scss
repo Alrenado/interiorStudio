@@ -2,7 +2,12 @@
 @use "sass:math";
 @use "sass:meta";
 
-@mixin font($family: 'Montserrat',$weight: 300, $style: normal, $filename: 'Montserrat-Light') {
+@mixin font(
+  $family: 'Montserrat',
+  $weight: 300,
+  $style: normal,
+  $filename: 'Montserrat-Light'
+) {
   @font-face {
     font-family: $family;
     font-weight: $weight;

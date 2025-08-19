@@ -2,7 +2,6 @@
 @use 'variables';
 @use "sass:map";
 
-
 @include mixins.font('Montserrat', variables.$light, normal, 'Montserrat-Light');
 @include mixins.font('Montserrat', variables.$regular, normal, 'Montserrat-Regular');
 @include mixins.font('Montserrat', variables.$semi-bold, normal, 'Montserrat-SemiBold');

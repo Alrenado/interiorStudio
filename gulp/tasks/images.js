@@ -1,11 +1,7 @@
 import gulp from 'gulp';
 import paths from "../config/path.js";
 import plugins from "../config/plugins.js";
-import imagemin from "gulp-imagemin";
-import imageminMozjpeg from "imagemin-mozjpeg";
-import optipng from "imagemin-optipng";
-import pngquant  from 'imagemin-pngquant';
-import through2 from 'through2';
+
 
 const qualityLevels = {
     0: 100,
@@ -21,7 +17,7 @@ const qualityLevels = {
 function webpBuild(qualityLevels = 3){
     qualityLevels = (qualityLevels >= 0 && qualityLevels <= 7) ? qualityLevels : 3;
     return gulp
-        .src(paths.src.img)
+        .src(paths.src.png, {encoding: false})
         .pipe(plugins.errorConfig('webp img'))
         .pipe(plugins.webp({
             quality: qualityLevels,
@@ -34,7 +30,7 @@ function webpBuild(qualityLevels = 3){
 function avifBuild(qualityLevels = 3) {
     qualityLevels = (qualityLevels >= 0 && qualityLevels <= 7) ? qualityLevels : 3;
     return gulp
-        .src(paths.src.img)
+        .src(paths.src.png, {encoding: false})
         .pipe(plugins.errorConfig('avif img'))
         .pipe(plugins.avif({
             quality: qualityLevels,
@@ -45,36 +41,30 @@ function avifBuild(qualityLevels = 3) {
 }
 
 function pngBuild(qualityLevel = 4) {
-    // qualityLevel = (qualityLevel >= 0 && qualityLevel <= 7) ? qualityLevel : 4;
-    // return gulp
-        // .src(paths.src.png, { base: paths.srcFolder, allowEmpty: true })
-        // .pipe(plugins.errorConfig('png img'))
-        // .pipe(imagemin([
-        //     pngquant({
-        //         quality: [0.3, qualityLevels[qualityLevel] / 100],
-        //         speed: 1,
-        //         strip: true,
-        //         dithering: 0,
-        //     }),
-        //     optipng({
-        //         optimizationLevel: qualityLevel,
-        //         bitDepthReduction: true,
-        //         colorTypeReduction: true,
-        //         paletteReduction: true,
-        //     }),
-        // ], {
-        //     verbose: true
-        // }))
-        // .pipe(plugins.flatten())
-        // .pipe(plugins.debugConfig('png after build complete.'))
-        // .pipe(gulp.dest(paths.build.png))
-        // .on('end', () => console.log('PNG build completed, check dist/img/png for output.'));
+    qualityLevel = (qualityLevel >= 0 && qualityLevel <= 7) ? qualityLevel : 4;
     return gulp
-        .src(paths.src.png, { base: paths.srcFolder, allowEmpty: true })
-        .pipe(plugins?.plumber ? plugins.plumber('png copy') : plugins.through2.obj((f,_,cb)=>cb(null,f)))
-        .pipe(gulp.dest(paths.build.png));
-
-
+        .src(paths.src.png, {encoding: false})
+        .pipe(plugins.errorConfig('png img'))
+        .pipe(plugins.imagemin([
+            plugins.pngquant({
+                quality: [0.3, qualityLevels[qualityLevel] / 100],
+                speed: 1,
+                strip: true,
+                dithering: 0,
+            }),
+            plugins.optipng({
+                optimizationLevel: qualityLevel,
+                bitDepthReduction: true,
+                colorTypeReduction: true,
+                paletteReduction: true,
+            }),
+        ], {
+            verbose: true
+        }))
+        .pipe(plugins.flatten())
+        .pipe(plugins.debugConfig('png after build complete.'))
+        .pipe(gulp.dest(paths.build.png))
+        .on('end', () => console.log('PNG build completed, check dist/img/png for output.'));
 }
 
 const svgSpriteConfig = {
@@ -96,15 +86,11 @@ function spriteBuild() {
 }
 
 
-const images = gulp.series(
+const images = gulp.parallel(
     pngBuild,
     webpBuild,
     avifBuild,
     spriteBuild
-
 )
-
-export { pngBuild };
-// const images = pngBuild;
 
 export default images;
