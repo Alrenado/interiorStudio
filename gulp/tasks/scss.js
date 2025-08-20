@@ -12,7 +12,14 @@ export default function style() {
         .pipe(plugins.sourcemaps.init())
         .pipe(plugins.autoprefixer())
         .pipe(plugins.cleanCSS())
-        .pipe(plugins.rename({suffix: '.min'}))
+        .pipe(plugins.rename(file => {
+            const pageName = file.basename === 'style'
+                ? file.dirname
+                : file.basename;
+            file.dirname = '';
+            file.basename = pageName;
+            file.extname = '.min.css';
+        }))
         .pipe(plugins.sourcemaps.write())
         .pipe(gulp.dest(paths.build.css))
         .pipe(plugins.debugConfig('css after build complete.'))
