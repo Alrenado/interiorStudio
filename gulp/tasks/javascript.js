@@ -4,7 +4,6 @@ import plugins from "../config/plugins.js";
 function bundleOne(absPath) {
     const parent = plugins.path.basename(plugins.path.dirname(absPath));
     const outFile = `${parent}.bundle.js`;
-    console.log(absPath, parent, outFile);
 
     const babelifyTransformer = plugins.babelify.configure({
         babelrc: false,
@@ -17,15 +16,13 @@ function bundleOne(absPath) {
         plugins.browserify({ entries: [absPath], debug: true })
             .transform(babelifyTransformer)
             .bundle()
-            .on("error", (err) => {
-                console.error(err.message || err);
-                reject(err);
-            })
+            .pipe(plugins.errorConfig('javascript'))
             .pipe(plugins.source(outFile))
             .pipe(plugins.buffer())
             .pipe(plugins.sourcemaps.init({ loadMaps: true }))
             .pipe(plugins.uglify())
             .pipe(plugins.sourcemaps.write("."))
+            .pipe(plugins.debugConfig('javascript after build complete.'))
             .pipe(plugins.dest(paths.build.js))
             .on("end", resolve);
     });

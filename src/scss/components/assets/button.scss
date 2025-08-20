@@ -44,9 +44,9 @@
                           border: variables.$white-btn
                   ),
                   hover: (
-                          bg: variables.$white,
-                          text: variables.$black,
-                          border: variables.$white
+                          bg: variables.$white-btn,
+                          text: variables.$white,
+                          border: variables.$white-btn
                   ),
           ),
           dark: (

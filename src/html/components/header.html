@@ -6,25 +6,24 @@
                 <a class="header__logo-text" href="index.html">LOGO</a>
             </div>
             <ul class="header__menu">
-                <li class="menu__item"><a href="projects.html">Projects</a></li>
-                <li class="menu__item"><a href="about.html">About us</a></li>
-                <li class="menu__item"><a href="blog.html">Blog</a></li>
-                <li class="menu__item"><a href="contacts.html">Contacts</a></li>
+                <li class="header__item"><a href="projects.html">Projects</a></li>
+                <li class="header__item"><a href="about.html">About us</a></li>
+                <li class="header__item"><a href="blog.html">Blog</a></li>
+                <li class="header__item"><a href="contacts.html">Contacts</a></li>
             </ul>
         </div>
         <div class="header__section">
             @@include('assets/select.html', {
-            "class": "header",
-            "name": "lang",
-            "options": ["En", "Ru", "Ua", "Gr"],
-            "type": "light"
+                "class": "header",
+                "options": ["En", "Ru", "Ua", "Gr"],
+                "type": "light"
             })
 
             @@include('assets/button.html', {
-            "class": "header",
-            "text": "Send Request",
-            "type": "light",
-            "label": "header",
+                "class": "header",
+                "text": "Send Request",
+                "type": "light",
+                "label": "header",
             })
         </div>
     </nav>

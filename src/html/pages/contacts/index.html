@@ -1,20 +1,18 @@
 <!doctype html>
 <html lang="en">
-
-@@include('../../components/head.html', {
-"description": "contacts",
-"title": "contacts",
-"style": "contacts",
-})
-
+    @@include('../../components/assets/head.html', {
+        "description": "contacts",
+        "title": "contacts",
+        "style": "contacts",
+    })
 <body>
-@@include('../../components/header.html')
+    @@include('../../components/header.html')
 
-@@include('../../components/popups.html')
-@@include('../../components/footer.html')
+    @@include('../../components/popups.html')
+    @@include('../../components/footer.html')
 
-@@include('../../components/scripts.html')
-
-<a href="about">123</a>
+    @@include('../../components/assets/script.html', {
+        "name": "contacts"
+    })
 </body>
 </html>

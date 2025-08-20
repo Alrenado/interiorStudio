@@ -2,63 +2,65 @@
 @use '../../components/variables';
 @use "sass:map";
 
-.select-wrapper {
+.select {
   position: relative;
+  display: inline-block;
+  width: fit-content;
+  font-family: Montserrat, sans-serif;
+  font-size: 1rem;
+  color: variables.$white;
 
-  @include mixins.font-init(
-          $family: 'Montserrat',
-          $font-weight: variables.$semi-bold,
-          $font-size: 1.12rem,
-  );
-
-  select{
-    display: none;
-  }
-
-  .select-selected {
-    background-color: DodgerBlue;
-  }
-
-  .select-selected:after {
-    position: absolute;
-    content: "";
-    top: 14px;
-    right: 10px;
-    width: 0;
-    height: 0;
-    border: 6px solid transparent;
-    border-color: #fff transparent transparent transparent;
-  }
-
-  .select-selected.select-arrow-active:after {
-    border-color: transparent transparent #fff transparent;
-    top: 7px;
-  }
-
-  .select-items div,.select-selected {
-    color: #ffffff;
-    padding: 8px 16px;
-    border: 1px solid transparent;
-    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  &__trigger {
+    background: transparent;
+    padding: 0.5em 1em;
     cursor: pointer;
+    user-select: none;
+
+    &:hover {
+      color: variables.$white-btn;
+    }
   }
 
-  /* Style items (options): */
-  .select-items {
+  &__menu {
     position: absolute;
-    background-color: DodgerBlue;
-    top: 100%;
-    left: 0;
+    top: calc(100% + 0.25em);
+    padding: 0 2rem;
+    left: -0.5rem;
     right: 0;
-    z-index: 99;
+
+    background: variables.$black;
+    border: 0.2rem solid variables.$white-btn;
+
+    width: 100%;
+    max-width: fit-content;
+    max-height: 0;
+    overflow: hidden;
+
+    opacity: 0;
+    visibility: hidden;
+    //transition: max-height 0.5s ease, opacity 0.5s ease;
+
+    transition: all 0.5s ease;
+
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
 
-  /* Hide the items when the select box is closed: */
-  .select-hide {
-    display: none;
+  &.open &__menu {
+    opacity: 1;
+    visibility: visible;
   }
 
-  .select-items div:hover, .same-as-selected {
-    background-color: rgba(0, 0, 0, 0.1);
+  &__option {
+    padding: 1rem 2rem;
+    cursor: pointer;
+
+    &:hover {
+      background: variables.$white-btn;
+    }
   }
 }

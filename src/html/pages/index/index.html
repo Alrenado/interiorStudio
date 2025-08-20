@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-    @@include('../../components/head.html', {
+    @@include('../../components/assets/head.html', {
         "description": "index",
         "title": "index",
         "style": "index",
@@ -11,7 +11,8 @@
     @@include('../../components/popups.html')
     @@include('../../components/footer.html')
 
-    @@include('../../components/scripts.html')
-
+    @@include('../../components/assets/script.html', {
+        "name": "index"
+    })
 </body>
 </html>

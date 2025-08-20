@@ -1,7 +1,8 @@
-<label class="select-wrapper @@class__select-wrapper">
-  <select name="@@name" class="@@class__select select select__@@type">
+<div class="select @@class__select select__@@type">
+  <div class="select__trigger">En</div>
+  <ul class="select__menu">
     @@for (var i = 0; i < options.length; i++) {
-      <option value="${options[i]}" class="@@class__option select__option">${options[i]}</option>
+      <li value="${options[i]}" class="@@class__option select__option">${options[i]}</li>
     }
-  </select>
-</label>
+  </ul>
+</div>
