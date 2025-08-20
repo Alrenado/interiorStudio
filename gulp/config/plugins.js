@@ -11,7 +11,7 @@ import webp from 'gulp-webp';
 import avif from '../gulp-avif.js'
 import imagemin from "gulp-imagemin";
 import optipng from "imagemin-optipng";
-import pngquant  from 'imagemin-pngquant';
+import pngquant from 'imagemin-pngquant';
 import through2 from 'through2';
 
 //fonts
@@ -27,10 +27,19 @@ import browserSync from "browser-sync";
 //js
 import uglify from 'gulp-uglify';
 import concat from 'gulp-concat';
+import browserify from "browserify";
+import {sync as globSync} from "glob";
+import source from "vinyl-source-stream";
+import buffer from "vinyl-buffer";
+import {dest} from "gulp";
+import babelify from "babelify";
+import path from "path";
+
 
 //css
 import dartSass from 'sass';
 import gulpSass from 'gulp-sass';
+
 const sass = gulpSass(dartSass);
 import autoprefixer from "gulp-autoprefixer";
 import cleanCSS from "gulp-clean-css";
@@ -95,6 +104,13 @@ const plugins = {
     //js
     uglify,
     concat,
+    browserify,
+    globSync,
+    source,
+    buffer,
+    dest,
+    babelify,
+    path,
 
     //css
     dartSass,

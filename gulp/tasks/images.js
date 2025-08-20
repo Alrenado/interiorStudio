@@ -2,7 +2,6 @@ import gulp from 'gulp';
 import paths from "../config/path.js";
 import plugins from "../config/plugins.js";
 
-
 const qualityLevels = {
     0: 100,
     1: 95,
@@ -73,7 +72,7 @@ const svgSpriteConfig = {
             sprite: 'sprite.svg'
         }
     }
-};
+}
 
 function spriteBuild() {
     return gulp
@@ -85,12 +84,11 @@ function spriteBuild() {
         .pipe(gulp.dest(paths.build.svg));
 }
 
-
 const images = gulp.parallel(
     pngBuild,
     webpBuild,
     avifBuild,
     spriteBuild
-)
+);
 
 export default images;
