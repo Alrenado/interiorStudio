@@ -8,7 +8,7 @@
 ">
     <button
             class="button-container__button"
-            aria-label="@@if(label){@@label}@@if(label === '' || label == null || label == undefined) {default label}">
+            aria-label="@@label">
         @@if (task === 'default') {
             @@if (text) {
                 <span class="button-container__button-text">@@text</span>
@@ -22,7 +22,7 @@
             @@if (text) {
                 <span class="button-container__button-text">@@text</span>
             }
-            @@if (!text) {
+            @@if (!text === '' || text == null || text == undefined) {
                 <span class="button-container__button-text">Default</span>
             }
         }
@@ -48,3 +48,5 @@
 
     </button>
 </div>
+
+<!--aria-label="@@if(label){@@label}@@if(label === '' || label == null || label == undefined) {default label}">-->

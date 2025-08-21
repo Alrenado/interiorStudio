@@ -4,9 +4,11 @@
 @use '../../components/variables';
 
 @use '../../components/header';
+@use '../../components/assets/button';
+@use '../../components/assets/select';
+@use '../../components/dialog';
 @use '../../components/footer';
 
-@use '../../components/assets/button';
 
 body{
   background-color: black;

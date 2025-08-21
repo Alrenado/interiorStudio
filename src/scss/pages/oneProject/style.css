@@ -1,3 +1,433 @@
+html {
+  font-size: 14px;
+  line-height: 1.15;
+  scroll-behavior: smooth;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+html.lock {
+  overflow: hidden;
+  touch-action: none;
+}
 
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 1;
+}
+
+main {
+  display: block;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+:focus,
+:active,
+a:focus,
+a:active {
+  outline: none;
+}
+
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+
+input,
+button,
+textarea,
+select,
+optgroup {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+[type=button],
+[type=reset],
+[type=submit] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+
+button::-moz-focus-inner,
+[type=button]::-moz-focus-inner,
+[type=reset]::-moz-focus-inner,
+[type=submit]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+button:-moz-focusring,
+[type=button]:-moz-focusring,
+[type=reset]:-moz-focusring,
+[type=submit]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+[type=number]::-webkit-inner-spin-button,
+[type=number]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type=search] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+
+[type=checkbox],
+[type=radio] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+textarea {
+  overflow: auto;
+}
+
+a {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+  cursor: pointer;
+}
+a:visited, a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+  border-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+pre,
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+  color: inherit;
+}
+
+legend {
+  box-sizing: border-box;
+  color: inherit;
+  display: table;
+  max-width: 100%;
+  padding: 0;
+  white-space: normal;
+}
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+progress {
+  vertical-align: baseline;
+}
+
+details {
+  display: block;
+}
+
+summary {
+  display: list-item;
+}
+
+template,
+[hidden] {
+  display: none;
+}
+
+.header {
+  padding: 1.8rem 4.5rem;
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  font-family: "Montserrat", "sans-serif";
+  font-weight: 600;
+  letter-spacing: normal;
+  font-size: clamp(0.896rem, calc(0.896rem + (0.224) * (100vw - 375px) / 1065), 1.12rem);
+  color: rgb(255, 255, 255);
+}
+.header__logo-text {
+  font-family: "Montserrat", "sans-serif";
+  font-weight: 400;
+  letter-spacing: 0.25rem;
+  font-size: clamp(1.04rem, calc(1.04rem + (0.26) * (100vw - 375px) / 1065), 1.3rem);
+}
+.header__logo-text:hover {
+  color: rgba(253, 253, 253, 0.32);
+}
+.header__navbar {
+  max-width: 99rem;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header__section:nth-child(1) {
+  gap: 10.2rem;
+}
+.header__section:nth-child(2) {
+  gap: 5rem;
+}
+.header__menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3.6rem;
+}
+.header__item a:hover {
+  color: rgba(253, 253, 253, 0.32);
+}
+.header .button-container {
+  padding: clamp(0.9rem, calc(0.9rem + (0.9) * (100vw - 375px) / 1065), 1.8rem) clamp(3.15rem, calc(3.15rem + (3.15) * (100vw - 375px) / 1065), 6.3rem);
+}
+.header .button-container__button-text {
+  font-family: "Montserrat", "sans-serif";
+  font-weight: 400;
+  letter-spacing: normal;
+  font-size: clamp(0.96rem, calc(0.96rem + (0.24) * (100vw - 375px) / 1065), 1.2rem);
+}
+
+.button-container {
+  width: 100%;
+  height: 100%;
+  max-width: fit-content;
+  max-height: fit-content;
+  padding: clamp(0.5rem, calc(0.5rem + (0.5) * (100vw - 375px) / 1065), 1rem) clamp(0.5rem, calc(0.5rem + (0.5) * (100vw - 375px) / 1065), 1rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+.button-container__button-text {
+  font-family: "Montserrat", "sans-serif";
+  font-weight: 600;
+  letter-spacing: normal;
+  font-size: clamp(0.896rem, calc(0.896rem + (0.224) * (100vw - 375px) / 1065), 1.12rem);
+}
+.button-container__button {
+  background: none;
+}
+.button-container.button-container_light {
+  background: transparent;
+  border: 0.2rem solid rgba(253, 253, 253, 0.32);
+}
+.button-container.button-container_light .button-container__button-text {
+  color: rgb(255, 255, 255);
+}
+.button-container.button-container_light:hover {
+  background: rgba(253, 253, 253, 0.32);
+  border: 0.2rem solid rgba(253, 253, 253, 0.32);
+}
+.button-container.button-container_light:hover .button-container__button-text {
+  color: rgb(255, 255, 255);
+}
+.button-container.button-container_dark {
+  background: rgb(255, 255, 255);
+  border: 0.2rem solid rgb(255, 255, 255);
+}
+.button-container.button-container_dark .button-container__button-text {
+  color: rgb(8, 8, 8);
+}
+.button-container.button-container_dark:hover {
+  background: rgba(253, 253, 253, 0.32);
+  border: 0.2rem solid rgba(253, 253, 253, 0.32);
+}
+.button-container.button-container_dark:hover .button-container__button-text {
+  color: rgb(255, 255, 255);
+}
+
+.select {
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+  font-family: Montserrat, sans-serif;
+  font-size: 1rem;
+  color: rgb(255, 255, 255);
+}
+.select__trigger {
+  background: transparent;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  user-select: none;
+}
+.select__trigger:hover {
+  color: rgba(253, 253, 253, 0.32);
+}
+.select__menu {
+  position: absolute;
+  top: calc(100% + 0.25em);
+  padding: 0 2rem;
+  left: -0.5rem;
+  right: 0;
+  background: rgb(8, 8, 8);
+  border: 0.2rem solid rgba(253, 253, 253, 0.32);
+  width: 100%;
+  max-width: fit-content;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.select.open .select__menu {
+  opacity: 1;
+  visibility: visible;
+}
+.select__option {
+  padding: 1rem 2rem;
+  cursor: pointer;
+}
+.select__option:hover {
+  background: rgba(253, 253, 253, 0.32);
+}
+
+.dialog {
+  width: 100%;
+  height: 100%;
+  max-width: 60rem;
+  max-height: 50rem;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.04);
+  margin: auto auto;
+}
+.dialog__content {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 2rem;
+  color: rgb(255, 255, 255);
+}
+.dialog__content h2 {
+  margin: 0;
+}
+.dialog__content p {
+  line-height: 1.4;
+}
+.dialog .button-container {
+  padding: clamp(0.9rem, calc(0.9rem + (0.9) * (100vw - 375px) / 1065), 1.8rem) clamp(3.15rem, calc(3.15rem + (3.15) * (100vw - 375px) / 1065), 6.3rem);
+}
+.dialog .button-container__button-text {
+  font-family: "Montserrat", "sans-serif";
+  font-weight: 400;
+  letter-spacing: normal;
+  font-size: clamp(0.96rem, calc(0.96rem + (0.24) * (100vw - 375px) / 1065), 1.2rem);
+}
+
+body {
+  background-color: black;
+  font-family: "Montserrat", "sans-serif";
+  font-weight: 400;
+  letter-spacing: normal;
+  font-size: clamp(1.6rem, calc(1.6rem + (0.4) * (100vw - 375px) / 1065), 2rem);
+}
 
 /*# sourceMappingURL=style.css.map */
