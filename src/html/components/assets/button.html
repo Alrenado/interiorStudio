@@ -1,20 +1,21 @@
-<div class="
-    @@class__button-container
-    button-container_@@type
-    @@if (task === 'href') {button-container__button_src}
-    @@if (task === 'modal') {button-container__button_modal}
-    @@if (task === 'default') {button-container__button_default}
-    button-container
+<div class="button-container
+            @@if(typeof this.className === 'string'){@@className__button-container}
+            @@if(typeof this.className !== 'string'){}
+            @@if (typeof type === 'string') {button-container_@@type}
+            @@if (typeof type !== 'string') {button-container_light}
+            @@if (task === 'href') {button-container__button_src}
+            @@if (task === 'modal') {button-container__button_modal}
+            @@if (task === 'default') {button-container__button_default}
+            @@if (typeof task !== 'string') {button-container__button_default}
 ">
-    <button
-            class="button-container__button"
-            aria-label="@@label">
+    <button class="button-container__button"
+            aria-label="@@if(label){@@label}@@if(typeof label !== 'string'){button label}">
         @@if (task === 'default') {
             @@if (text) {
                 <span class="button-container__button-text">@@text</span>
             }
-            @@if (text === '' || text == null || text == undefined) {
-                <span class="button-container__button-text">Default</span>
+            @@if (typeof text !== 'string') {
+                <span class="button-container__button-text">button text</span>
             }
         }
 
@@ -22,31 +23,33 @@
             @@if (text) {
                 <span class="button-container__button-text">@@text</span>
             }
-            @@if (!text === '' || text == null || text == undefined) {
-                <span class="button-container__button-text">Default</span>
+            @@if (typeof text !== 'string') {
+                <span class="button-container__button-text">button text</span>
             }
         }
+
         @@if (task === 'href') {
-            @@if (hrefLink) {
-                @@if (hrefText) {
-                    <a href="@@hrefLink">@@hrefText</a>
+            @@if (link) {
+                @@if (text) {
+                    <a class="button-container__button-text" href="@@link">@@text</a>
                 }
-                @@if (!hrefText) {
-                    <a href="@@hrefLink">Default Text</a>
-                }
-            }
-            @@if (!hrefLink) {
-                @@if (hrefText) {
-                    <a href="index.html">@@hrefText</a>
-                }
-                @@if (!hrefText) {
-                    <a href="index.html">Default Text</a>
+                @@if (typeof text !== 'string') {
+                    <a class="button-container__button-text" href="@@link">button text</a>
                 }
             }
+            @@if (typeof link !== 'string') {
+                @@if (text) {
+                    <a class="button-container__button-text" href="#">@@text</a>
+                }
+                @@if (typeof text !== 'string') {
+                    <a class="button-container__button-text" href="#">button text</a>
+                }
+            }
+
         }
 
-
+        @@if (typeof task !== 'string') {
+            <span class="button-container__button-text">button text</span>
+        }
     </button>
 </div>
-
-<!--aria-label="@@if(label){@@label}@@if(label === '' || label == null || label == undefined) {default label}">-->

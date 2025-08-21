@@ -1,15 +1,13 @@
-@use '../../components/normalize';
 @use '../../components/style';
 @use '../../components/mixins';
 @use '../../components/variables';
-
 @use '../../components/header';
 @use '../../components/assets/button';
 @use '../../components/assets/select';
 @use '../../components/dialog';
 @use '../../components/footer';
 
-
+@use '../../components/normalize';
 body{
   background-color: black;
   @include mixins.font-init(

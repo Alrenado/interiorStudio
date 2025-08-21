@@ -1,8 +1,20 @@
-<div class="select @@class__select select__@@type">
-  <div class="select__trigger">En</div>
-  <ul class="select__menu">
-    @@for (var i = 0; i < options.length; i++) {
-      <li value="${options[i]}" class="@@class__option select__option">${options[i]}</li>
-    }
-  </ul>
+<div class="select
+            @@if (typeof this.className === 'string') {@@className__select}
+            @@if (typeof this.className !== 'string') {}
+            @@if (typeof type === 'string') {select_@@type}
+            @@if (typeof type !== 'string') {select_light}">
+    <div class="select__trigger">En</div>
+    <ul class="select__menu">
+        @@if (Array.isArray(options) && options.length > 0) {
+            @@for (var i = 0; i < options.length; i++) {
+                @@if (typeof `+options[i]+` === 'string') {
+                    <li value=${options[i]} class="select__option
+                    @@if (typeof this.className === 'string') {@@className__option }
+                    @@if (typeof this.className !== 'string') {}">
+                        ${options[i]}
+                    </li>
+                }
+            }
+        }
+    </ul>
 </div>
