@@ -1,5 +1,50 @@
-<div class="@@class__button-container button-container_@@type button-container">
-    <button class="button-container__button" aria-label="@@label">
-        <span class="button-container__button-text">@@text</span>
+<div class="
+    @@class__button-container
+    button-container_@@type
+    @@if (task === 'href') {button-container__button_src}
+    @@if (task === 'modal') {button-container__button_modal}
+    @@if (task === 'default') {button-container__button_default}
+    button-container
+">
+    <button
+            class="button-container__button"
+            aria-label="@@if(label){@@label}@@if(label === '' || label == null || label == undefined) {default label}">
+        @@if (task === 'default') {
+            @@if (text) {
+                <span class="button-container__button-text">@@text</span>
+            }
+            @@if (text === '' || text == null || text == undefined) {
+                <span class="button-container__button-text">Default</span>
+            }
+        }
+
+        @@if (task === 'modal') {
+            @@if (text) {
+                <span class="button-container__button-text">@@text</span>
+            }
+            @@if (!text) {
+                <span class="button-container__button-text">Default</span>
+            }
+        }
+        @@if (task === 'href') {
+            @@if (hrefLink) {
+                @@if (hrefText) {
+                    <a href="@@hrefLink">@@hrefText</a>
+                }
+                @@if (!hrefText) {
+                    <a href="@@hrefLink">Default Text</a>
+                }
+            }
+            @@if (!hrefLink) {
+                @@if (hrefText) {
+                    <a href="index.html">@@hrefText</a>
+                }
+                @@if (!hrefText) {
+                    <a href="index.html">Default Text</a>
+                }
+            }
+        }
+
+
     </button>
 </div>
