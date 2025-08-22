@@ -1,10 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="form
+    @@if(typeof this.className === 'string'){@@className__form}
+    @@if(typeof this.className !== 'string'){}">
+    <label>
+        @@if (type === 'file'){
+            @@if(typeof fileText === 'string'){@@fileText}
+            @@if(typeof fileText !== 'string'){+}
+        }
+        <input
+                class="input
+                @@if(typeof this.className === 'string'){
+                    @@if(typeof type === 'string'){@@className__input input_@@type}
+                    @@if(typeof type !== 'string'){@@className__input input_text}
+                }
 
-</body>
-</html>
+                @@if(typeof this.className !== 'string'){
+                    @@if(typeof type === 'string'){input_@@type}
+                    @@if(typeof type !== 'string'){input_text}
+                }"
+
+                name="
+                    @@if(typeof this.className === 'string'){@@className_input}
+                    @@if(typeof this.className !== 'string'){input}"
+
+                @@if(required=== 'true'){required}
+
+                type="@@if( type === 'text' || type === 'email' || type === 'tel' || type === 'search' || typeof type !== 'string' ){@@type}
+
+                @@if(type === 'file'){@@type}"
+
+                @@if(type === 'text' || type === 'email' || type === 'tel' || type === 'search' || typeof type !== 'string'){
+                    autocapitalize="@@if(typeof autocapitalize === 'string'){@@autocapitalize}@@if(typeof autocapitalize !==
+                    'string'){none}"
+
+                    placeholder="@@if(typeof placeholder === 'string'){@@placeholder}@@if(typeof placeholder !== 'string'){@@type}"
+
+                    autocomplete="@@if(typeof autocomplete === 'string'){@@autocomplete}@@if(typeof autocomplete !==
+                    'string'){given-name}"
+                }
+
+                @@if(type === 'file'){
+                    accept="@@if(typeof accept === 'string'){@@accept}@@if(typeof accept !== 'string'){image/png, image/jpeg}"
+
+                    size="@@if(typeof size === 'string' || typeof size === 'number'){@@size}@@if(typeof size !== 'string' && typeof
+
+                    size !== 'number'){10000}"
+
+                    @@if(multiple === 'true'){multiple}
+                }
+        />
+
+    </label>
+</div>

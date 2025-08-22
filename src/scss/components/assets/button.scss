@@ -24,6 +24,13 @@
   border 0.3s ease-in-out,
   color 0.3s ease-in-out;
 
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
   &__button-text {
     @include mixins.font-init(
             $family: 'Montserrat',

@@ -79,6 +79,12 @@
   outline: none;
   transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
 }
+.button-container__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 .button-container__button-text {
   font-family: "Montserrat", "sans-serif";
   font-weight: 600;

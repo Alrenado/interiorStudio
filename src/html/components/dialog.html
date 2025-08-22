@@ -1,9 +1,15 @@
 <dialog closedby="any" class="dialog">
     <div class="dialog__content">
-        <p>
-            Closable using the "Close" button, the Esc key, or by clicking outside the
-            dialog. "Light dismiss" behavior.
-        </p>
+        <div>
+            @@include('assets/input.html', {
+            "className": "dialog",
+            "required": "true",
+            "type": "text",
+            "autocapitalize": "none",
+            "placeholder": "Name",
+            "autocomplete": "given-name",
+            })
+        </div>
         @@include('assets/button.html', {
             "className": "dialog",
             "task": "href",
