@@ -233,12 +233,27 @@ template,
   width: 100%;
   display: flex;
   justify-content: center;
+  background-color: transparent;
+  transition: background-color 0.5s ease;
+}
+.header_scrolled {
   background-color: black;
+}
+.header {
   font-family: "Montserrat", "sans-serif";
   font-weight: 600;
   letter-spacing: normal;
   font-size: clamp(0.896rem, calc(0.896rem + (0.224) * (100vw - 375px) / 1065), 1.12rem);
   color: rgb(255, 255, 255);
+}
+.header .button-container {
+  padding: clamp(0.9rem, calc(0.9rem + (0.9) * (100vw - 375px) / 1065), 1.8rem) clamp(3.15rem, calc(3.15rem + (3.15) * (100vw - 375px) / 1065), 6.3rem);
+}
+.header .button-container__button-text {
+  font-family: "Montserrat", "sans-serif";
+  font-weight: 400;
+  letter-spacing: normal;
+  font-size: clamp(0.96rem, calc(0.96rem + (0.24) * (100vw - 375px) / 1065), 1.2rem);
 }
 .header__logo-text {
   font-family: "Montserrat", "sans-serif";
@@ -276,15 +291,6 @@ template,
 }
 .header__item a:hover {
   color: rgba(253, 253, 253, 0.32);
-}
-.header .button-container {
-  padding: clamp(0.9rem, calc(0.9rem + (0.9) * (100vw - 375px) / 1065), 1.8rem) clamp(3.15rem, calc(3.15rem + (3.15) * (100vw - 375px) / 1065), 6.3rem);
-}
-.header .button-container__button-text {
-  font-family: "Montserrat", "sans-serif";
-  font-weight: 400;
-  letter-spacing: normal;
-  font-size: clamp(0.96rem, calc(0.96rem + (0.24) * (100vw - 375px) / 1065), 1.2rem);
 }
 
 .button-container {

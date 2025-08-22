@@ -1,6 +1,5 @@
 export default function initDialog(selector = ".select") {
     const selects = document.querySelectorAll(selector);
-    console.log(selects);
 
     selects.forEach(select => {
         const anyBtn = document.querySelector(".button-container__button_modal");
