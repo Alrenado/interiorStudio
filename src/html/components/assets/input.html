@@ -1,13 +1,16 @@
-<div class="form
+<form class="form
     @@if(typeof this.className === 'string'){@@className__form}
     @@if(typeof this.className !== 'string'){}">
-    <label>
+    <label class = "form__label
+        @@if(typeof this.className === 'string'){@@className__label}
+        @@if(typeof this.className !== 'string'){}"
+    >
         @@if (type === 'file'){
             @@if(typeof fileText === 'string'){@@fileText}
             @@if(typeof fileText !== 'string'){+}
         }
         <input
-                class="input
+                class="form__input
                 @@if(typeof this.className === 'string'){
                     @@if(typeof type === 'string'){@@className__input input_@@type}
                     @@if(typeof type !== 'string'){@@className__input input_text}
@@ -18,15 +21,11 @@
                     @@if(typeof type !== 'string'){input_text}
                 }"
 
-                name="
-                    @@if(typeof this.className === 'string'){@@className_input}
-                    @@if(typeof this.className !== 'string'){input}"
+                name="@@if(typeof this.className === 'string'){@@className_input}@@if(typeof this.className !== 'string'){input}"
 
                 @@if(required=== 'true'){required}
 
-                type="@@if( type === 'text' || type === 'email' || type === 'tel' || type === 'search' || typeof type !== 'string' ){@@type}
-
-                @@if(type === 'file'){@@type}"
+                type="@@if( type === 'text' || type === 'email' || type === 'tel' || type === 'search' || typeof type !== 'string' ){@@type}@@if(type === 'file'){@@type}"
 
                 @@if(type === 'text' || type === 'email' || type === 'tel' || type === 'search' || typeof type !== 'string'){
                     autocapitalize="@@if(typeof autocapitalize === 'string'){@@autocapitalize}@@if(typeof autocapitalize !==
@@ -48,6 +47,13 @@
                     @@if(multiple === 'true'){multiple}
                 }
         />
-
+        @@if( type === 'text' || type === 'email' || type === 'tel' || type === 'search' || typeof type !== 'string' ) {
+            <span class="form__span
+                @@if(typeof this.className === 'string'){@@className__form__span}
+                @@if(typeof this.className !== 'string'){}">
+            </span>
+        }
     </label>
-</div>
+</form>
+
+

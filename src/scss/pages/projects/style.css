@@ -405,18 +405,26 @@ template,
 .dialog {
   width: 100%;
   height: 100%;
-  max-width: 60rem;
-  max-height: 50rem;
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.04);
-  margin: auto auto;
+  max-width: 72%;
+  max-height: 84%;
+  padding: 4rem 0;
+  background-color: rgb(242, 242, 242);
+  margin: auto;
+}
+.dialog__wrapper {
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  max-width: 57rem;
 }
 .dialog__content {
   display: flex;
   flex-direction: column;
   padding: 2rem;
   gap: 2rem;
+  margin: 1rem auto;
   color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
 }
 .dialog__content h2 {
   margin: 0;

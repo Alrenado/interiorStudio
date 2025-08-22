@@ -5,13 +5,20 @@
   width: 100%;
   height: 100%;
 
-  max-width: 60rem;
-  max-height: 50rem;
+  max-width: 72%;
+  max-height: 84%;
 
+  padding: 4rem 0;
+  background-color: variables.$gray-modal-bg;
+  margin: auto;
 
-  border-radius: 5px;
-  background-color: variables.$gray-title-hr-black-bg;
-  margin: auto auto;
+  &__wrapper {
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+
+    max-width: 57rem;
+  }
 
 
   &__content{
@@ -21,7 +28,10 @@
     padding: 2rem;
     gap: 2rem;
 
+    margin: 1rem auto;
+
     color: variables.$white;
+    background-color: variables.$white;
 
     & h2 {
       margin: 0;

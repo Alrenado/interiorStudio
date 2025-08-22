@@ -173,21 +173,76 @@
   background: rgba(253, 253, 253, 0.32);
 }
 
+.form__label {
+  position: relative;
+  display: block;
+  width: max-content;
+}
+.form__input {
+  background-color: transparent;
+  color: rgb(58, 62, 75);
+  width: 100%;
+  max-width: 10rem;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+  border-bottom: 1px solid rgba(221, 221, 221, 0.39);
+  font-family: "Montserrat", "sans-serif";
+  font-weight: 600;
+  letter-spacing: normal;
+  font-size: clamp(0.896rem, calc(0.896rem + (0.224) * (100vw - 375px) / 1065), 1.12rem);
+}
+.form__input:hover {
+  background-color: rgba(130, 130, 130, 0.32);
+}
+.form__input:focus {
+  outline: none;
+}
+.form__input:focus ~ .form__span {
+  width: 100%;
+}
+.form__input:-webkit-autofill, .form__input:-webkit-autofill:hover, .form__input:-webkit-autofill:focus, .form__input:-webkit-autofill:active {
+  -webkit-text-fill-color: rgb(58, 62, 75) !important;
+  background: transparent !important;
+  background-clip: text !important;
+  box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  caret-color: rgb(58, 62, 75) !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+.form__span {
+  position: absolute;
+  background: #5891ff;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s ease;
+}
+
 .dialog {
   width: 100%;
   height: 100%;
-  max-width: 60rem;
-  max-height: 50rem;
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.04);
-  margin: auto auto;
+  max-width: 72%;
+  max-height: 84%;
+  padding: 4rem 0;
+  background-color: rgb(242, 242, 242);
+  margin: auto;
+}
+.dialog__wrapper {
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  max-width: 57rem;
 }
 .dialog__content {
   display: flex;
   flex-direction: column;
   padding: 2rem;
   gap: 2rem;
+  margin: 1rem auto;
   color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
 }
 .dialog__content h2 {
   margin: 0;
