@@ -1,15 +1,16 @@
-<section class="area">
-  <h3 class="area__title">Area (m2)</h3>
-  <div class="area__options">
-    @@loop("area-option.html", [
-    {"value":"0-50","label":"to 50"},
-    {"value":"50-150","label":"50-150"},
-    {"value":"150-250","label":"150-250"},
-    {"value":"250-400","label":"250-400"},
-    {"value":"400-600","label":"400-600"},
-    {"value":"600-800","label":"600-800"},
-    {"value":"800-1000","label":"800-1000"},
-    {"value":"1000+","label":"1000+"}
-    ])
+<div class="slider">
+  <div class="slider__menu">
+    @@if (Array.isArray(item) && item.length > 0) {
+    @@for (var i = 0; i < item.length; i++) {
+    @@if (typeof `+item[i]+` === 'string') {
+    @@include('assets/input.html', {
+    "className": "slider",
+    "type": radio
+    "value": "`+item[i]+`",
+    "sub": "Email",
+    })
+    }
+    }
+    }
   </div>
-</section>
+</div>

@@ -1,8 +1,8 @@
 <div class="select
-            @@if (typeof this.className === 'string') {@@className__select}
-            @@if (typeof this.className !== 'string') {}
-            @@if (typeof type === 'string') {select_@@type}
-            @@if (typeof type !== 'string') {select_light}">
+    @@if (typeof this.className === 'string') {@@className__select}
+    @@if (typeof this.className !== 'string') {}
+    @@if (typeof type === 'string') {select_@@type}
+    @@if (typeof type !== 'string') {select_light}">
     <div class="select__trigger">En</div>
     <ul class="select__menu">
         @@if (Array.isArray(options) && options.length > 0) {

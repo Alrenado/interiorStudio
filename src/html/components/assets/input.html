@@ -61,4 +61,17 @@
                 @@if(typeof this.className !== 'string'){}">
         </span>
     }
+    @@if (type === 'radio'){
+        <label class="form__label
+            @@if(typeof this.className === 'string'){@@className__label}
+            @@if(typeof this.className !== 'string'){}">
+
+            <input class="form__input"
+                   type="@@radio"
+                   value="@@value"
+                   name="@@if(typeof this.className === 'string'){@@className_input}@@if(typeof this.className !== 'string'){input}"
+            />
+            <span class="form__sub">@@sub</span>
+        </label>
+    }
 </form>

@@ -1,14 +1,17 @@
-<section class="area">
-    <div class="area__options">
-        @@loop("area-option.html", [
-        {"value":"0-50","label":"to 50"},
-        {"value":"50-150","label":"50-150"},
-        {"value":"150-250","label":"150-250"},
-        {"value":"250-400","label":"250-400"},
-        {"value":"400-600","label":"400-600"},
-        {"value":"600-800","label":"600-800"},
-        {"value":"800-1000","label":"800-1000"},
-        {"value":"1000+","label":"1000+"}
-        ])
-    </div>
-</section>
+<!doctype html>
+<html lang="en">
+    @@include('../../components/assets/head.html', {
+        "description": "index",
+        "title": "index",
+        "style": "index",
+    })
+<body>
+    @@include('../../components/header.html')
+    @@include('../../components/footer.html')
+    @@include('../../components/dialog.html')
+
+    @@include('../../components/assets/script.html', {
+        "name": "index"
+    })
+</body>
+</html>
