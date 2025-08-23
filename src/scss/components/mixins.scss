@@ -96,3 +96,13 @@
     }
   }
 }
+
+@mixin input(
+  $max-width: 10rem
+){
+  .form{
+    &__input{
+      max-width: $max-width;
+    }
+  }
+}

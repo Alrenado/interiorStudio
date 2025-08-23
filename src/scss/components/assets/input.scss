@@ -2,30 +2,25 @@
 @use '../../components/variables';
 
 .form {
+  // Base styles for all form elements
   &__label {
     position: relative;
     display: block;
-    width: max-content;
   }
 
   &__input {
     background-color: transparent;
     color: variables.$black-text;
-
     width: 100%;
     max-width: 10rem;
-
-
     padding-inline: 0.5em;
     padding-block: 0.7em;
-
     border: none;
-    border-bottom: 1px solid rgba(221, 221, 221, 0.39);
-
+    border-bottom: 0.2rem solid rgba(221, 221, 221, 0.39);
     @include mixins.font-init(
             $family: 'Montserrat',
             $font-weight: variables.$semi-bold,
-            $font-size: 1.12rem,
+            $font-size: 1.12rem
     );
 
     &:hover {
@@ -52,18 +47,88 @@
       caret-color: variables.$black-text !important;
       transition: background-color 5000s ease-in-out 0s;
     }
-
   }
 
   &__span {
     position: absolute;
-    background: #5891ff;
+    background: variables.$black-text;
     width: 0;
-    height: 2px;
+    height: 0.2rem;
     bottom: 0;
     left: 0;
     transition: width 0.3s ease;
   }
+
+  &--text {
+    .form__input {
+      &:focus ~ .form__span {
+        width: 100%;
+      }
+    }
+  }
+
+
+  &_file {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__button {
+      cursor: pointer;
+      background: #f0f0f0;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: variables.$black-text;
+      transition: background 0.3s;
+
+      &:hover {
+        background: variables.$gray-title-white-bg;
+      }
+    }
+
+    &__input {
+      display: none;
+    }
+
+    &__text-wrapper {
+      pointer-events: none;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+
+      gap: .3rem;
+
+    }
+
+    &__title {
+      @include mixins.font-init(
+              $family: 'Montserrat',
+              $font-weight: variables.$semi-bold,
+              $font-size: 1.12rem
+      );
+      color: variables.$black-text;
+    }
+
+    &__sub {
+      @include mixins.font-init(
+              $family: 'Montserrat',
+              $font-weight: variables.$semi-bold,
+              $font-size: 1.12rem
+      );
+      color: variables.$black-text-transparent;
+    }
+  }
 }
-
-

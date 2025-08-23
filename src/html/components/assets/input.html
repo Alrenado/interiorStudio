@@ -1,59 +1,64 @@
 <form class="form
     @@if(typeof this.className === 'string'){@@className__form}
-    @@if(typeof this.className !== 'string'){}">
-    <label class = "form__label
-        @@if(typeof this.className === 'string'){@@className__label}
-        @@if(typeof this.className !== 'string'){}"
-    >
-        @@if (type === 'file'){
+    @@if(typeof this.className !== 'string'){}
+    @@if(type === 'text' || type === 'email' || type === 'tel' || type === 'search' || typeof type !== 'string'){form--text}
+    @@if(type === 'file'){form_file}">
+    @@if (type === 'file'){
+    <div class="form_file__wrapper
+        @@if(typeof this.className === 'string'){@@className__form__file__wrapper}
+        @@if(typeof this.className !== 'string'){}">
+        <label class="form_file__button">
             @@if(typeof fileText === 'string'){@@fileText}
             @@if(typeof fileText !== 'string'){+}
-        }
+            <input class="form_file__input
+                 @@if(typeof this.className === 'string'){
+                     @@if(typeof type === 'string'){@@className__input input_@@type}
+                     @@if(typeof type !== 'string'){@@className__input input_file}
+                 }
+                 @@if(typeof this.className !== 'string'){
+                     @@if(typeof type === 'string'){input_@@type}
+                     @@if(typeof type !== 'string'){input_file}
+                 }"
+                 name="@@if(typeof this.className === 'string'){@@className_input}@@if(typeof this.className !== 'string'){input}"
+                 @@if(required === 'true'){required}
+                 type="@@if(type === 'file'){@@type}"
+                 accept="@@if(typeof accept === 'string'){@@accept}@@if(typeof accept !== 'string'){image/png, image/jpeg}"
+                 size="@@if(typeof size === 'string' || typeof size === 'number'){@@size}@@if(typeof size !== 'string' && typeof size !== 'number'){10000}"
+                 @@if(multiple === 'true'){multiple}
+            />
+        </label>
+    </div>
+    <div class="form_file__text-wrapper">
+        <span class="form_file__title">Attach your file</span>
+        <span class="form_file__sub">File size not more than 10 MB</span>
+    </div>
+    }
+    @@if( type === 'text' || type === 'email' || type === 'tel' || type === 'search' || typeof type !== 'string' ) {
+    <label class="form__label
+            @@if(typeof this.className === 'string'){@@className__label}
+            @@if(typeof this.className !== 'string'){}"
+    >
         <input
                 class="form__input
-                @@if(typeof this.className === 'string'){
-                    @@if(typeof type === 'string'){@@className__input input_@@type}
-                    @@if(typeof type !== 'string'){@@className__input input_text}
-                }
-
-                @@if(typeof this.className !== 'string'){
-                    @@if(typeof type === 'string'){input_@@type}
-                    @@if(typeof type !== 'string'){input_text}
-                }"
-
+                    @@if(typeof this.className === 'string'){
+                        @@if(typeof type === 'string'){@@className__input input_@@type}
+                        @@if(typeof type !== 'string'){@@className__input input_text}
+                    }
+                    @@if(typeof this.className !== 'string'){
+                        @@if(typeof type === 'string'){input_@@type}
+                        @@if(typeof type !== 'string'){input_text}
+                    }"
                 name="@@if(typeof this.className === 'string'){@@className_input}@@if(typeof this.className !== 'string'){input}"
-
-                @@if(required=== 'true'){required}
-
-                type="@@if( type === 'text' || type === 'email' || type === 'tel' || type === 'search' || typeof type !== 'string' ){@@type}@@if(type === 'file'){@@type}"
-
-                @@if(type === 'text' || type === 'email' || type === 'tel' || type === 'search' || typeof type !== 'string'){
-                    autocapitalize="@@if(typeof autocapitalize === 'string'){@@autocapitalize}@@if(typeof autocapitalize !==
-                    'string'){none}"
-
-                    placeholder="@@if(typeof placeholder === 'string'){@@placeholder}@@if(typeof placeholder !== 'string'){@@type}"
-
-                    autocomplete="@@if(typeof autocomplete === 'string'){@@autocomplete}@@if(typeof autocomplete !==
-                    'string'){given-name}"
-                }
-
-                @@if(type === 'file'){
-                    accept="@@if(typeof accept === 'string'){@@accept}@@if(typeof accept !== 'string'){image/png, image/jpeg}"
-
-                    size="@@if(typeof size === 'string' || typeof size === 'number'){@@size}@@if(typeof size !== 'string' && typeof
-
-                    size !== 'number'){10000}"
-
-                    @@if(multiple === 'true'){multiple}
-                }
+                @@if(required === 'true'){required}
+        type="@@if( type === 'text' || type === 'email' || type === 'tel' || type === 'search' || typeof type !== 'string' ){@@type}"
+        autocapitalize="@@if(typeof autocapitalize === 'string'){@@autocapitalize}@@if(typeof autocapitalize !== 'string'){none}"
+        placeholder="@@if(typeof placeholder === 'string'){@@placeholder}@@if(typeof placeholder !== 'string'){@@type}"
+        autocomplete="@@if(typeof autocomplete === 'string'){@@autocomplete}@@if(typeof autocomplete !== 'string'){given-name}"
         />
-        @@if( type === 'text' || type === 'email' || type === 'tel' || type === 'search' || typeof type !== 'string' ) {
-            <span class="form__span
+    </label>
+    <span class="form__span
                 @@if(typeof this.className === 'string'){@@className__form__span}
                 @@if(typeof this.className !== 'string'){}">
-            </span>
-        }
-    </label>
+        </span>
+    }
 </form>
-
-

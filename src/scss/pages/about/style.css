@@ -337,19 +337,33 @@ template,
 .button-container.button-container_light:hover .button-container__button-text {
   color: rgb(255, 255, 255);
 }
-.button-container.button-container_dark {
+.button-container.button-container_transparent {
   background: rgb(255, 255, 255);
   border: 0.2rem solid rgb(255, 255, 255);
 }
-.button-container.button-container_dark .button-container__button-text {
+.button-container.button-container_transparent .button-container__button-text {
   color: rgb(8, 8, 8);
 }
-.button-container.button-container_dark:hover {
+.button-container.button-container_transparent:hover {
   background: rgba(253, 253, 253, 0.32);
   border: 0.2rem solid rgba(253, 253, 253, 0.32);
 }
-.button-container.button-container_dark:hover .button-container__button-text {
+.button-container.button-container_transparent:hover .button-container__button-text {
   color: rgb(255, 255, 255);
+}
+.button-container.button-container_dark {
+  background: rgb(58, 62, 75);
+  border: 0.2rem solid rgb(58, 62, 75);
+}
+.button-container.button-container_dark .button-container__button-text {
+  color: rgb(255, 255, 255);
+}
+.button-container.button-container_dark:hover {
+  background: rgb(242, 242, 242);
+  border: 0.2rem solid rgb(242, 242, 242);
+}
+.button-container.button-container_dark:hover .button-container__button-text {
+  color: rgb(58, 62, 75);
 }
 
 .select {
@@ -404,33 +418,51 @@ template,
 
 .dialog {
   width: 100%;
-  height: 100%;
+  height: fit-content;
   max-width: 72%;
-  max-height: 84%;
-  padding: 4rem 0;
+  padding: 3rem;
   background-color: rgb(242, 242, 242);
   margin: auto;
+  overflow-y: auto;
 }
 .dialog__wrapper {
   margin: 0 auto;
   width: 100%;
-  height: 100%;
   max-width: 57rem;
 }
 .dialog__content {
-  display: flex;
-  flex-direction: column;
+  max-height: 70vh;
   padding: 2rem;
   gap: 2rem;
   margin: 1rem auto;
-  color: rgb(255, 255, 255);
   background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.dialog__content h2 {
-  margin: 0;
+.dialog__title {
+  font-family: "Montserrat", "sans-serif";
+  font-weight: 700;
+  letter-spacing: normal;
+  font-size: clamp(1.6rem, calc(1.6rem + (0.4) * (100vw - 375px) / 1065), 2rem);
+  color: rgb(58, 62, 75);
 }
-.dialog__content p {
-  line-height: 1.4;
+.dialog__form-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.dialog__comment {
+  width: 100%;
+}
+.dialog__submit {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 .dialog .button-container {
   padding: clamp(0.9rem, calc(0.9rem + (0.9) * (100vw - 375px) / 1065), 1.8rem) clamp(3.15rem, calc(3.15rem + (3.15) * (100vw - 375px) / 1065), 6.3rem);
@@ -440,6 +472,9 @@ template,
   font-weight: 400;
   letter-spacing: normal;
   font-size: clamp(0.96rem, calc(0.96rem + (0.24) * (100vw - 375px) / 1065), 1.2rem);
+}
+.dialog .form__input {
+  max-width: none;
 }
 
 body {
