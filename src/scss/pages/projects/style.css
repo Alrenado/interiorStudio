@@ -420,7 +420,7 @@ template,
   width: 100%;
   height: fit-content;
   max-width: 72%;
-  padding: 3rem;
+  padding: 1rem 2rem;
   background-color: rgb(242, 242, 242);
   margin: auto;
   overflow-y: auto;
@@ -447,6 +447,7 @@ template,
   letter-spacing: normal;
   font-size: clamp(1.6rem, calc(1.6rem + (0.4) * (100vw - 375px) / 1065), 2rem);
   color: rgb(58, 62, 75);
+  user-select: none;
 }
 .dialog .form {
   width: 100%;

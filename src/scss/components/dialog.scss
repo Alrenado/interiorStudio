@@ -7,7 +7,7 @@
 
   max-width: 72%;
 
-  padding: 3rem;
+  padding: 1rem 2rem;
   background-color: variables.$gray-modal-bg;
   margin: auto;
 
@@ -43,6 +43,7 @@
       $font-size: 2rem,
     );
     color: variables.$black-text;
+    user-select: none;
   }
 
 
