@@ -1,0 +1,20 @@
+<form class="form">
+    <div class="slider">
+        <div class="slider__menu">
+            @@if (Array.isArray(item) && item.length > 0) {
+                @@for (var i = 0; i < item.length; i++) {
+                    @@if (typeof `+item[i]+` === 'string') {
+                        @@include('input.html', {
+                            "className": "slider",
+                            "type": "radio",
+                            "value":"`+item[i]+`",
+                            "sub": "`+item[i]+`",
+                            "required": "true"
+                        })
+                    }
+                }
+            }
+        </div>
+    </div>
+</form>
+

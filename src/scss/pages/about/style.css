@@ -448,8 +448,10 @@ template,
   font-size: clamp(1.6rem, calc(1.6rem + (0.4) * (100vw - 375px) / 1065), 2rem);
   color: rgb(58, 62, 75);
 }
-.dialog__form-container {
+.dialog .form {
   width: 100%;
+}
+.dialog .form_grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;

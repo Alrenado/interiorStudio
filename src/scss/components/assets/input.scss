@@ -2,7 +2,6 @@
 @use '../../components/variables';
 
 .form {
-  // Base styles for all form elements
   &__label {
     position: relative;
     display: block;
@@ -59,14 +58,7 @@
     transition: width 0.3s ease;
   }
 
-  &--text {
-    .form__input {
-      &:focus ~ .form__span {
-        width: 100%;
-      }
-    }
-  }
-
+  // file input
 
   &_file {
     display: flex;
@@ -85,7 +77,6 @@
       border-radius: 50%;
       width: 40px;
       height: 40px;
-
       display: flex;
       align-items: center;
       justify-content: center;
@@ -104,13 +95,10 @@
 
     &__text-wrapper {
       pointer-events: none;
-
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-
       gap: .3rem;
-
     }
 
     &__title {
@@ -129,6 +117,49 @@
               $font-size: 1.12rem
       );
       color: variables.$black-text-transparent;
+
+      .area__input:checked + & {
+        color: #000;
+        font-weight: 600;
+      }
     }
   }
-}
+
+  &_radio {
+
+    &__input {
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid #d0d0d0;
+      background: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        border-color: #aaa;
+        transform: scale(1.1);
+      }
+
+      &:checked {
+        background: #000;
+        border-color: #000;
+        box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.1);
+        transform: scale(1.2);
+        animation: pulse 0.3s ease;
+      }
+
+      &:checked + .form_radio__sub {
+        color: #000;
+        font-weight: 600;
+      }
+    }
+
+    &__sub {
+      margin-top: 0.5rem;
+      font-size: 0.875rem;
+      color: #888;
+      transition: color 0.3s, font-weight 0.3s;
+    }
+}}

@@ -2,90 +2,101 @@
     <div class="dialog__wrapper">
         <div class="dialog__content dialog__content_form">
             <h2 class="dialog__section dialog__title">Calculate the cost of work</h2>
-            <div class="dialog__section dialog__form-container">
+            <form class="form form_grid">
                 @@include('assets/input.html', {
-                "className": "dialog",
-                "required": "true",
-                "type": "text",
-                "autocapitalize": "none",
-                "placeholder": "Name",
-                "autocomplete": "given-name",
+                    "className": "dialog",
+                    "required": "true",
+                    "type": "text",
+                    "autocapitalize": "none",
+                    "placeholder": "Name",
+                    "autocomplete": "given-name",
                 })
 
                 @@include('assets/input.html', {
-                "className": "dialog",
-                "required": "true",
-                "type": "text",
-                "autocapitalize": "none",
-                "placeholder": "Last name",
-                "autocomplete": "family-name",
+                    "className": "dialog",
+                    "required": "true",
+                    "type": "text",
+                    "autocapitalize": "none",
+                    "placeholder": "Last name",
+                    "autocomplete": "family-name",
                 })
 
                 @@include('assets/input.html', {
-                "className": "dialog",
-                "required": "true",
-                "type": "tel",
-                "autocapitalize": "none",
-                "placeholder": "Phone",
-                "autocomplete": "tel",
+                    "className": "dialog",
+                    "required": "true",
+                    "type": "tel",
+                    "autocapitalize": "none",
+                    "placeholder": "Phone",
+                    "autocomplete": "tel",
                 })
 
                 @@include('assets/input.html', {
-                "className": "dialog",
-                "required": "true",
-                "type": "text",
-                "autocapitalize": "none",
-                "placeholder": "Your city",
-                "autocomplete": "street-address",
+                    "className": "dialog",
+                    "required": "true",
+                    "type": "text",
+                    "autocapitalize": "none",
+                    "placeholder": "Your city",
+                    "autocomplete": "street-address",
                 })
 
                 @@include('assets/input.html', {
-                "className": "dialog",
-                "required": "true",
-                "type": "email",
-                "autocapitalize": "none",
-                "placeholder": "Email",
-                "autocomplete": "email",
+                    "className": "dialog",
+                    "required": "true",
+                    "type": "email",
+                    "autocapitalize": "none",
+                    "placeholder": "Email",
+                    "autocomplete": "email",
                 })
 
                 @@include('assets/input.html', {
-                "className": "dialog",
-                "required": "true",
-                "type": "text",
-                "autocapitalize": "none",
-                "placeholder": "Property type",
-                "autocomplete": "given-name",
+                    "className": "dialog",
+                    "required": "true",
+                    "type": "text",
+                    "autocapitalize": "none",
+                    "placeholder": "Property type",
+                    "autocomplete": "given-name",
                 })
-            </div>
-            <div class="dialog__section dialog__comment">
+            </form>
+            <form class="form">
                 @@include('assets/input.html', {
-                "className": "dialog",
-                "required": "true",
-                "type": "text",
-                "autocapitalize": "none",
-                "placeholder": "Your comment",
-                "autocomplete": "text",
+                    "className": "dialog",
+                    "required": "true",
+                    "type": "text",
+                    "autocapitalize": "none",
+                    "placeholder": "Your comment",
+                    "autocomplete": "text",
                 })
-            </div>
+            </form>
         </div>
-        <div class="dialog__content">
+
+    </div>
+    <div class="dialog__content">
+        <form class="form">
+            @@include('assets/slider.html', {
+                "item": ["to 50", "50-100", "150-250", "250-400", "400-600", "600-800", "800-1000", "1000+"],
+                "className": "dialog",
+                "type": "file"
+            })
+
             <div class="dialog__section dialog__submit">
                 @@include('assets/input.html', {
-                "className": "dialog",
-                "required": "true",
-                "type": "file",
-                "placeholder": "+",
-                "multiple": "true",
+                    "className": "dialog",
+                    "required": "true",
+                    "type": "file",
+                    "placeholder": "+",
+                    "multiple": "true",
                 })
+
                 @@include('assets/button.html', {
-                "className": "dialog",
-                "task": "href",
-                "link": "index.html",
-                "text": "Send Request",
-                "type": "dark",
-                "label": "dialog send request"
+                    "className": "dialog",
+                    "task": "href",
+                    "link": "index.html",
+                    "text": "Send Request",
+                    "type": "dark",
+                    "label": "dialog send request"
                 })
             </div>
-        </div>
+        </form>
+    </div>
     </div>
 </dialog>

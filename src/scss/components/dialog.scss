@@ -46,8 +46,11 @@
   }
 
 
-  &__form-container{
+  & .form{
     width: 100%;
+  }
+
+  & .form_grid{
     display: grid;
     grid-template-columns: 1fr 1fr;
 
