@@ -9,7 +9,7 @@
             @@if (typeof task !== 'string') {button-container__button_default}
 ">
     <button class="button-container__button"
-            aria-label="@@if(label){@@label}@@if(typeof label !== 'string'){button label}">
+            @@if(typeof label === "string"){aria-label = "label"}@@if(typeof label !== "string"){aria-label = "label"}>
         @@if (task === 'default') {
             @@if (text) {
                 <span class="button-container__button-text">@@text</span>
