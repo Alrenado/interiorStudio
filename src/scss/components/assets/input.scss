@@ -55,7 +55,17 @@
     height: 0.2rem;
     bottom: 0;
     left: 0;
-    transition: width 0.3s ease;
+    transition: width 0.3s ease, background-color 0.5s ease;
+  }
+
+  &_text{
+    & .form__span.valid {
+      background: green;
+    }
+
+    & .form__span.invalid {
+      background: red;
+    }
   }
 
   // file input

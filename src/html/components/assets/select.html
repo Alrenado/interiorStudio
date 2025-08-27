@@ -2,19 +2,46 @@
     @@if (typeof this.className === 'string') {@@className__select}
     @@if (typeof this.className !== 'string') {}
     @@if (typeof type === 'string') {select_@@type}
-    @@if (typeof type !== 'string') {select_light}">
-    <div class="select__trigger">En</div>
-    <ul class="select__menu">
-        @@if (Array.isArray(options) && options.length > 0) {
-            @@for (var i = 0; i < options.length; i++) {
-                @@if (typeof `+options[i]+` === 'string') {
-                    <li value=${options[i]} class="select__option
-                    @@if (typeof this.className === 'string') {@@className__option }
-                    @@if (typeof this.className !== 'string') {}">
-                        ${options[i]}
-                    </li>
+    @@if (typeof type !== 'string') {select_default}">
+
+    @@if (typeof type !== 'string' || type === "default") {
+        @@if (typeof trigger === 'string') {<div class="select__trigger">@@trigger</div>}
+        @@if (typeof trigger !== 'string') {<div class="select__trigger">En</div>}
+
+
+        <ul class="select__menu">
+            @@if (Array.isArray(options) && options.length > 0) {
+                @@for (var i = 0; i < options.length; i++) {
+                    @@if (typeof `+options[i]+` === 'string') {
+                        <li value=${options[i]} class="select__option
+                            @@if (typeof this.className === 'string') {@@className__option }
+                            @@if (typeof this.className !== 'string') {}">
+                            ${options[i]}
+                        </li>
+                    }
                 }
             }
-        }
-    </ul>
+        </ul>
+    }
+
+    @@if (type === "input") {
+        @@if (typeof trigger === 'string') {<div class="select__trigger">@@trigger</div>}
+        @@if (typeof trigger !== 'string') {<div class="select__trigger">Property type</div>}
+
+        <ul class="select__menu">
+            @@if (Array.isArray(options) && options.length > 0) {
+                @@for (var i = 0; i < options.length; i++) {
+                    @@if (typeof `+options[i]+` === 'string') {
+                    <li value=${options[i]} class="select__option
+                        @@if (typeof this.className === 'string') {@@className__option }
+                        @@if (typeof this.className !== 'string') {}">
+                        ${options[i]}
+                    </li>
+                    }
+                }
+            }
+        </ul>
+
+        <span></span>
+    }
 </div>

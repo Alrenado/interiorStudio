@@ -26,7 +26,8 @@
 @@if( type === 'text' || type === 'email' || type === 'tel' || type === 'search' || typeof type !== 'string' ) {
     <label class="form__label
                 @@if(typeof this.className === 'string'){@@className__label}
-                @@if(typeof this.className !== 'string'){}">
+                @@if(typeof this.className !== 'string'){}
+                @@if(type === 'text' || type === 'email' || type === 'tel' || type === 'search' || typeof type !== 'string'){form_text}">
         <input class="form__input
             @@if(typeof this.className === 'string'){
                 @@if(typeof type === 'string'){@@className__input input_@@type}
@@ -36,15 +37,30 @@
                 @@if(typeof type === 'string'){input_@@type}
                 @@if(typeof type !== 'string'){input_text}
             }"
+
             @@if(typeof this.className === 'string'){name="@@className_input"}@@if(typeof this.className !== 'string'){name="input"}
             @@if( type === 'text' || type === 'email' || type === 'tel' || type === 'search' || typeof type !== 'string' ){type="@@type"}
+
             @@if(typeof autocapitalize === 'string'){autocapitalize="@@autocapitalize"}@@if(typeof autocapitalize !== 'string'){autocapitalize="none"}
             @@if(typeof placeholder === 'string'){placeholder="@@placeholder"}@@if(typeof placeholder !== 'string'){placeholder="placeholder"}
+
             @@if(typeof autocomplete === 'string'){autocomplete="@@autocomplete"}@@if(typeof autocomplete !== 'string'){autocomplete="off"}
-            @@if(required=== 'true'){required}
-            @@if(typeof minlength === "string"){minlength = @@minlength}@@if(typeof minlength !== "string"){minlength = "3"}
-            @@if(typeof maxlength === "string"){maxlength = @@maxlength}@@if(typeof maxlength !== "string"){maxlength = "15"}
-            @@if(typeof pattern === "string"){pattern = @@pattern}@@if(typeof pattern !== "string"){pattern = "^[A-Za-zА-Яа-яЁё]+$"}
+
+            @@if(required === 'true'){required}
+
+            @@if(typeof minlength === "string"){minlength = @@minlength}
+            @@if(typeof minlength !== "string" && ( type === "text" || type === "email" || type === "search" )){minlength = "3"}
+            @@if(typeof minlength !== "string" && type === "tel"){minlength = "9"}
+
+            @@if(typeof maxlength === "string"){maxlength = @@maxlength}
+            @@if(typeof maxlength !== "string" && typeof type !== "string"){maxlength = "45"}
+            @@if(typeof maxlength !== "string" && ( type === "text" || type === "email" || type === "search")){maxlength = "45"}
+            @@if(typeof maxlength !== "string" && type === "tel"){maxlength = "15"}
+
+            @@if(typeof pattern === "string" && type === "text"){pattern = @@pattern}@@if(typeof pattern !== "string" && type === "text"){pattern = "^[A-Za-zА-Яа-яЁё]+$"}
+            @@if(typeof pattern === "string" && type === "email"){pattern = @@pattern}@@if(typeof pattern !== "string" && type === "email"){pattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"}
+            @@if(typeof pattern === "string" && type === "tel"){pattern = @@pattern}@@if(typeof pattern !== "string" && type === "tel"){pattern="^\+?[0-9\s\-\(\)]{7,15}$"}
+            @@if(typeof pattern === "string" && type === "search"){pattern = @@pattern}@@if(typeof pattern !== "string" && type === "search"){pattern = ".*\S.*"}
         />
         <span class="form__span
             @@if(typeof this.className === 'string'){@@className__form__span}
@@ -85,3 +101,4 @@
         </div>
     </div>
 }
+

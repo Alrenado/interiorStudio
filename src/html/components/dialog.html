@@ -1,7 +1,8 @@
-<dialog closedby="any" class="dialog">
+<dialog closedby="any" class="dialog" xmlns="http://www.w3.org/1999/html">
+    <form class="form">
         <div class="dialog__content dialog__content_form">
-            <h2 class="dialog__section dialog__title">Calculate the cost of work</h2>
-            <form class="form form_grid">
+            <h2 class="dialog__title">Calculate the cost of work</h2>
+            <div class="form_grid">
                 @@include('assets/input.html', {
                     "className": "dialog",
                     "required": "true",
@@ -47,16 +48,13 @@
                     "autocomplete": "email",
                 })
 
-                @@include('assets/input.html', {
+                @@include('assets/select.html', {
                     "className": "dialog",
-                    "required": "true",
-                    "type": "text",
-                    "autocapitalize": "none",
-                    "placeholder": "Property type",
-                    "autocomplete": "given-name",
+                    "options": ["Type", "Type", "Type", "Type"],
+                    "type": "input"
                 })
-            </form>
-            <form class="form">
+            </div>
+            <div class="dialog__section">
                 @@include('assets/input.html', {
                     "className": "dialog",
                     "required": "true",
@@ -65,10 +63,9 @@
                     "placeholder": "Your comment",
                     "autocomplete": "text",
                 })
-            </form>
+            </div>
         </div>
-    <div class="dialog__content">
-        <form class="form">
+        <div class="dialog__content">
             @@include('assets/slider.html', {
                 "item": ["to 50", "50-100", "150-250", "250-400", "400-600", "600-800", "800-1000", "1000+"],
                 "className": "dialog",
@@ -85,7 +82,7 @@
                 })
 
                 @@include('assets/button.html', {
-                    "className": "dialog",
+                "className": "dialog",
                     "task": "href",
                     "link": "index.html",
                     "text": "Send Request",
@@ -93,6 +90,22 @@
                     "label": "dialog send request"
                 })
             </div>
-        </form>
+        </div>
+    </form>
+    <div class="dialog__content dialog__content_form invisible">
+        <h2>Thank you for your message!</h2>
+        <span>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam <br>
+            ullamcorper eu mauris vitae posuere. Ut at luctus ligula. Nunc <br>
+            ante felis, aliquam eu enim sed, ornare pretium velit. <br>
+        </span>
+        @@include('assets/button.html', {
+            "className": "dialog",
+            "task": "href",
+            "link": "index.html",
+            "text": "Send Request",
+            "type": "dark",
+            "label": "dialog send request"
+        })
     </div>
 </dialog>

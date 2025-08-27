@@ -141,8 +141,10 @@
   position: relative;
   display: inline-block;
   width: fit-content;
-  font-family: Montserrat, sans-serif;
-  font-size: 1rem;
+  font-family: "Montserrat", "sans-serif";
+  font-weight: 600;
+  letter-spacing: normal;
+  font-size: clamp(0.896rem, calc(0.896rem + (0.224) * (100vw - 375px) / 1065), 1.12rem);
   color: rgb(255, 255, 255);
 }
 .select__trigger {
@@ -150,6 +152,7 @@
   padding: 0.5em 1em;
   cursor: pointer;
   user-select: none;
+  transition: color 0.3s ease;
 }
 .select__trigger:hover {
   color: rgba(253, 253, 253, 0.32);
@@ -162,18 +165,18 @@
   right: 0;
   background: rgb(8, 8, 8);
   border: 0.2rem solid rgba(253, 253, 253, 0.32);
+  height: 0;
   width: 100%;
   max-width: fit-content;
-  max-height: 0;
   overflow: hidden;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.5s ease;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  transition: height 0.3s ease, background 0.3s ease;
 }
 .select.open .select__menu {
   opacity: 1;
@@ -182,9 +185,59 @@
 .select__option {
   padding: 1rem 2rem;
   cursor: pointer;
+  transition: background 0.3s ease, height 0.3s ease, opacity 0.3s ease;
 }
 .select__option:hover {
   background: rgba(253, 253, 253, 0.32);
+}
+.select.select_default {
+  color: rgb(255, 255, 255);
+}
+.select.select_default .select__menu {
+  background: rgb(8, 8, 8);
+  border-color: rgba(253, 253, 253, 0.32);
+}
+.select.select_default .select__trigger {
+  padding: 0 2rem;
+}
+.select.select_default .select__trigger:hover {
+  color: rgba(253, 253, 253, 0.32);
+}
+.select.select_default .select__option:hover {
+  background: rgba(253, 253, 253, 0.32);
+}
+.select.select_input {
+  color: rgb(58, 62, 75);
+}
+.select.select_input .select__menu {
+  background: rgb(8, 8, 8);
+  border-color: rgba(253, 253, 253, 0.32);
+}
+.select.select_input .select__trigger {
+  padding: 0.7rem 0.5rem;
+}
+.select.select_input .select__trigger:hover {
+  color: rgb(58, 62, 75);
+}
+.select.select_input .select__option:hover {
+  background: rgba(253, 253, 253, 0.32);
+}
+.select_input {
+  width: 100%;
+}
+.select_input .select__trigger:before {
+  content: "";
+  position: absolute;
+  top: 98%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(214, 214, 214, 0.3);
+  transform: translateY(-50%);
+  z-index: 0;
+}
+.select_input .select__trigger:hover {
+  background: rgba(130, 130, 130, 0.32);
 }
 
 .form__label {
@@ -230,7 +283,13 @@
   height: 0.2rem;
   bottom: 0;
   left: 0;
-  transition: width 0.3s ease;
+  transition: width 0.3s ease, background-color 0.5s ease;
+}
+.form_text .form__span.valid {
+  background: green;
+}
+.form_text .form__span.invalid {
+  background: red;
 }
 .form_file {
   display: flex;
@@ -329,7 +388,18 @@
   align-items: center;
   position: relative;
 }
-.slider__menu::before {
+.slider__label {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1;
+}
+.slider__input {
+  z-index: 1;
+}
+.slider__input::before {
   content: "";
   position: absolute;
   top: 25%;
@@ -340,14 +410,6 @@
   transform: translateY(-50%);
   z-index: 0;
 }
-.slider__label {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  z-index: 1;
-}
 
 .dialog {
   width: 100%;
@@ -357,6 +419,12 @@
   background-color: rgb(242, 242, 242);
   margin: auto;
   overflow-y: auto;
+}
+.dialog .visible {
+  display: flex;
+}
+.dialog .invisible {
+  display: none;
 }
 .dialog__wrapper {
   margin: 0 auto;
@@ -374,6 +442,12 @@
   justify-content: center;
   align-items: center;
 }
+.dialog__section {
+  width: 100%;
+}
+.dialog .slider {
+  width: 100%;
+}
 .dialog__title {
   font-family: "Montserrat", "sans-serif";
   font-weight: 700;
@@ -386,6 +460,7 @@
   width: 100%;
 }
 .dialog .form_grid {
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;

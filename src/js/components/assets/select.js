@@ -4,23 +4,52 @@ export default function initCustomSelect(selector = ".select") {
     selects.forEach(select => {
         const trigger = select.querySelector(".select__trigger");
         const menu = select.querySelector(".select__menu");
-        const options = select.querySelectorAll(".select__option");
+        const options = [...select.querySelectorAll(".select__option")];
+        const transitionDurations = window.getComputedStyle(menu).transitionDuration.split(", ");
+        const transitionProperties = window.getComputedStyle(menu).transitionProperty.split(", ");
+
+        const heightTransitionIndex = transitionProperties.indexOf("height");
+
+        let duration = transitionDurations[heightTransitionIndex];
+        let timeout = null;
+
+        if (duration.includes("ms")) {
+            duration = parseFloat(duration.replace("ms", ""));
+        }
+        else if (duration.includes("s")){
+            duration = parseFloat(duration.replace("s", "")) * 1000;
+        }
+        else {
+            console.log("error")
+            duration = 300;
+        }
+
+
+
+        const optionsHeight = options.map((el) => el.offsetHeight).reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+
+        console.log(optionsHeight);
 
         const openMenu = () => {
+            menu.style.height = "auto";
+            menu.style.opacity = "1";
+            menu.style.visibility = "visible"
+
+            clearTimeout(timeout);
             select.classList.add("open");
-            menu.style.maxHeight = "none";
-            const fullHeight = menu.scrollHeight + "px";
-            menu.style.maxHeight = "0px";
-            menu.offsetHeight;
-            menu.style.maxHeight = fullHeight;
+            menu.style.height = optionsHeight + "px";
+
+            console.log(optionsHeight);
+            menu.style.height = optionsHeight + "px";
+            menu.style.opacity = "";
+            menu.style.visibility = "";
         };
 
         const closeMenu = () => {
-            menu.style.maxHeight = menu.scrollHeight + "px";
-            menu.offsetHeight;
-
-            menu.style.maxHeight = "0px";
-            select.classList.remove("open");
+            menu.style.height = "0";
+            timeout = setTimeout(() => {
+                select.classList.remove("open");
+            }, duration)
         };
 
         trigger.addEventListener("click", () => {
