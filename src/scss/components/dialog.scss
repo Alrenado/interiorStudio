@@ -75,6 +75,13 @@
     gap: 1rem;
   }
 
+  @include mixins.media-breakpoint-down(tablet) {
+    & .form_grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+
   &__comment{
     width: 100%;
   }

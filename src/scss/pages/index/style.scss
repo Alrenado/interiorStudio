@@ -6,11 +6,13 @@
 @use '../../components/assets/select';
 @use '../../components/assets/input';
 @use '../../components/assets/slider';
+@use '../../components/assets/picture';
 
 @use '../../components/dialog';
 @use '../../components/footer';
 
 @use '../../components/normalize';
+
 body{
   background-color: black;
   @include mixins.font-init(
@@ -18,4 +20,11 @@ body{
           $font-weight: variables.$regular,
           $font-size: 2rem
   );
+
+  &.no-scroll {
+    overflow: hidden;
+    touch-action: none;
+  }
 }
+
+

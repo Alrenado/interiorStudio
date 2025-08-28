@@ -1,15 +1,18 @@
-export default function initDialog(selector = ".select") {
-    const selects = document.querySelectorAll(selector);
+export default function initHeader() {
+    const header = document.querySelector(".header");
+    const burger = document.querySelector(".header__burger");
+    const menu = document.querySelector(".header__menu");
+    const body = document.body;
 
-    selects.forEach(select => {
-        const header = document.querySelector(".header");
+    if (!header || !burger || !menu) return;
 
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 50) {
-                header.classList.add("header_scrolled");
-            } else {
-                header.classList.remove("header_scrolled");
-            }
-        });
+    window.addEventListener("scroll", () => {
+        header.classList.toggle("header_scrolled", window.scrollY > 50);
+    });
+
+    burger.addEventListener("click", () => {
+        burger.classList.toggle("open");
+        menu.classList.toggle("open");
+        body.classList.toggle("no-scroll");
     });
 }

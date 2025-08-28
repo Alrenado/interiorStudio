@@ -5,31 +5,68 @@
 }
 .slider__menu {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
+  gap: 10px;
+  padding: 0 10px;
+  background-repeat: no-repeat;
 }
 .slider__label {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
   z-index: 1;
+  text-align: center;
+  flex: 1;
+  min-width: 80px;
 }
-.slider__input {
+.slider .form_radio__input {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid rgba(214, 214, 214, 0.8);
+  background: white;
+  cursor: pointer;
+  position: relative;
   z-index: 1;
+  margin-bottom: 8px;
 }
-.slider__input::before {
-  content: "";
-  position: absolute;
-  top: 25%;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: rgba(214, 214, 214, 0.3);
-  transform: translateY(-50%);
-  z-index: 0;
+.slider .form_radio__input:checked {
+  background: #007bff;
+  border-color: #007bff;
+}
+.slider .form_radio__sub {
+  font-size: 0.875rem;
+  color: #333;
+}
+.slider__menu {
+  background-image: linear-gradient(to right, rgba(214, 214, 214, 0.3) 0%, rgba(214, 214, 214, 0.3) 100%);
+  background-position: 0 8px;
+  background-size: 100% 2px;
+}
+@media (max-width: 768px) {
+  .slider__label {
+    flex: 0 0 calc(33.333% - 10px);
+  }
+  .slider__menu {
+    background-image: linear-gradient(to right, rgba(214, 214, 214, 0.3) 0%, rgba(214, 214, 214, 0.3) 100%), linear-gradient(to right, rgba(214, 214, 214, 0.3) 0%, rgba(214, 214, 214, 0.3) 100%), linear-gradient(to right, rgba(214, 214, 214, 0.3) 0%, rgba(214, 214, 214, 0.3) 100%);
+    background-position: 0 8px, 0 58px, 0 108px;
+    background-size: 100% 2px, 100% 2px, 100% 2px;
+  }
+}
+@media (max-width: 480px) {
+  .slider__label {
+    flex: 0 0 calc(50% - 10px);
+  }
+  .slider__menu {
+    background-image: linear-gradient(to right, rgba(214, 214, 214, 0.3) 0%, rgba(214, 214, 214, 0.3) 100%), linear-gradient(to right, rgba(214, 214, 214, 0.3) 0%, rgba(214, 214, 214, 0.3) 100%), linear-gradient(to right, rgba(214, 214, 214, 0.3) 0%, rgba(214, 214, 214, 0.3) 100%), linear-gradient(to right, rgba(214, 214, 214, 0.3) 0%, rgba(214, 214, 214, 0.3) 100%);
+    background-position: 0 8px, 0 58px, 0 108px, 0 158px;
+    background-size: 100% 2px, 100% 2px, 100% 2px, 100% 2px;
+  }
 }
 
 /*# sourceMappingURL=slider.css.map */

@@ -1,0 +1,41 @@
+@@if (type === 'img' || typeof type !== 'string') {
+    <picture class="picture
+        @@if(typeof this.className === 'string'){@@className__label}
+        @@if(typeof this.className !== 'string'){}">
+        <source srcset=""
+                type="image/avif"
+                @@if(typeof pathName === 'string'){data-srcset="img/avif/@@pathName.avif"}
+                @@if(typeof pathName !== 'string'){data-srcset="img/webp/hero-swiper-first.avif}
+        >
+        <source srcset=""
+                type="image/webp"
+                @@if(typeof pathName === 'string'){data-srcset="img/png/@@pathName.webp"}
+                @@if(typeof pathName !== 'string'){data-srcset="img/png/hero-swiper-first.webp}
+        >
+
+        <img class="image"
+            src=""
+            @@if(typeof pathName === 'string'){data-srcset="img/webp/@@pathName.png"}
+            @@if(typeof pathName !== 'string'){data-srcset="img/webp/hero-swiper-first.png}
+
+            @@if(typeof pathName === 'string'){alt="@@pathName"}
+            @@if(typeof pathName === 'string'){alt="alt"}
+
+            @@if(typeof loading === 'string' && loading === "lazy"){loading="lazy"}
+            @@if(typeof loading !== 'string' || loading === "eager"){loading="eager"}
+
+            @@if(typeof priority === 'string' && priority === "high"){fetchpriority="high"}
+            @@if(typeof priority === 'string' && priority === "low"){fetchpriority="low"}
+            @@if(typeof priority !== 'string' || priority === "auto"){fetchpriority="auto"}
+        >
+    </picture>
+}
+@@if (type === 'svg') {
+    <svg class="logo
+        @@if(typeof this.className === 'string'){@@className__label}
+        @@if(typeof this.className !== 'string'){}">
+
+        @@if(typeof pathName === 'string'){<use xlink:href="img/svg/sprite.svg#@@pathName"></use>}
+        @@if(typeof pathName !== 'string'){<use xlink:href="img/svg/sprite.svg#default"></use>}
+    </svg>
+}

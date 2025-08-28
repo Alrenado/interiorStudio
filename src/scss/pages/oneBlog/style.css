@@ -280,6 +280,11 @@ template,
 .header__section:nth-child(1) {
   gap: 10.2rem;
 }
+@media (max-width: 1024px) {
+  .header__section:nth-child(1) {
+    gap: 2rem;
+  }
+}
 .header__section:nth-child(2) {
   gap: 5rem;
 }
@@ -291,6 +296,74 @@ template,
 }
 .header__item a:hover {
   color: rgba(253, 253, 253, 0.32);
+}
+.header__burger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 1.4rem;
+  height: 1.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.header__burger span {
+  display: block;
+  height: 0.175rem;
+  width: 1.4rem;
+  background: rgba(253, 253, 253, 0.32);
+  border-radius: 2px;
+  transition: background 0.5s ease, rotate 0.5s ease, opacity 0.5s ease, translate 0.5s ease;
+  margin: 0;
+}
+.header__burger span:nth-child(1) {
+  transform-origin: top left;
+}
+.header__burger span:nth-child(2) {
+  transform-origin: bottom left;
+}
+.header__burger span:nth-child(3) {
+  margin-left: auto;
+}
+.header__burger:hover span {
+  background: rgb(255, 255, 255);
+  transition: background-color 0.5s ease, transform 0.5s ease;
+}
+.header__burger.open span:nth-child(1) {
+  transform: rotate(45deg) translateY(0.2051rem);
+}
+.header__burger.open span:nth-child(2) {
+  opacity: 0;
+}
+.header__burger.open span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-0.2051rem);
+}
+@media (max-width: 1024px) {
+  .header__menu {
+    position: absolute;
+    min-height: 100vh;
+    height: calc(100vh - 98%);
+    top: 98%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    padding: 1rem;
+    background: var(--dark-purple);
+    transform: translateY(-10px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    overflow-y: auto;
+  }
+  .header__menu.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .header__burger {
+    display: flex;
+  }
 }
 
 .button-container {
@@ -522,6 +595,11 @@ template,
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+}
+@media (max-width: 1024px) {
+  .dialog .form_grid {
+    grid-template-columns: 1fr;
+  }
 }
 .dialog__comment {
   width: 100%;

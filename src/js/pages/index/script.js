@@ -5,9 +5,9 @@ import dialog from "../../components/dialog.js";
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    select();
     input();
     header();
     dialog();
+    select();
 });
 
