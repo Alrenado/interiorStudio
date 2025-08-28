@@ -26,7 +26,7 @@ function webpBuild(qualityLevels = 3){
         .pipe(gulp.dest(paths.build.webp));
 }
 
-function avifBuild(qualityLevels = 3) {
+function avifBuild(qualityLevels = 0) {
     qualityLevels = (qualityLevels >= 0 && qualityLevels <= 7) ? qualityLevels : 3;
     return gulp
         .src(paths.src.png, {encoding: false})

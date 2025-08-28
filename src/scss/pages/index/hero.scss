@@ -1,0 +1,12 @@
+@use "sass:map";
+@use "sass:math";
+
+@use '../../components/mixins';
+@use '../../components/variables';
+
+.hero{
+  @include mixins.picture(
+          $max-width: 20rem,
+          $max-height: 20rem,
+  );
+}

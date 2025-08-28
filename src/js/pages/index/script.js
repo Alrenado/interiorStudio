@@ -1,3 +1,5 @@
+import swiper from 'swiper';
+
 import select from "../../components/assets/select.js";
 import input from "../../components/assets/input.js";
 import picture from "../../components/assets/picture.js";

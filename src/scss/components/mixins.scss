@@ -106,3 +106,15 @@
     }
   }
 }
+
+@mixin picture(
+  $max-width: 10rem,
+  $max-height: 10rem
+){
+  .picture{
+    & .image{
+      max-width: $max-width;
+      max-height: $max-height;
+    }
+  }
+}
