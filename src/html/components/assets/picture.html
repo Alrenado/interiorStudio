@@ -1,22 +1,49 @@
 @@if (type === 'img' || typeof type !== 'string') {
     <picture class="picture
         @@if(typeof this.className === 'string'){@@className__label}
-        @@if(typeof this.className !== 'string'){}">
-        <source srcset=""
-                type="image/avif"
-                @@if(typeof pathName === 'string'){data-srcset="img/avif/@@pathName.avif"}
-                @@if(typeof pathName !== 'string'){data-srcset="img/webp/hero-swiper-first.avif}
+        @@if(typeof this.className !== 'string'){}
+        @@if(typeof observed === 'string' && observed === 'true'){observed-picture}
+        @@if(typeof observed !== 'string' || observed === 'false'){}">
+        <source type="image/avif"
+                @@if(typeof observed === 'string' && observed === 'true'){srcset=""}
+                @@if(typeof observed !== 'string' || observed === 'false'){
+                    @@if(typeof pathName === 'string'){srcset="img/avif/@@pathName.avif"}
+                    @@if(typeof pathName !== 'string'){srcset="img/avif/hero-swiper-first.avif}
+                }
+
+                @@if(typeof observed === 'string' && observed === 'true'){
+                    @@if(typeof pathName === 'string'){data-srcset="img/avif/@@pathName.avif"}
+                    @@if(typeof pathName !== 'string'){data-srcset="img/avif/hero-swiper-first.avif}
+                }
+                @@if(typeof observed !== 'string' && observed === 'false'){}
         >
-        <source srcset=""
-                type="image/webp"
-                @@if(typeof pathName === 'string'){data-srcset="img/png/@@pathName.webp"}
-                @@if(typeof pathName !== 'string'){data-srcset="img/png/hero-swiper-first.webp}
+
+        <source type="image/webp"
+            @@if(typeof observed === 'string' && observed === 'true'){srcset=""}
+            @@if(typeof observed !== 'string' || observed === 'false'){
+                @@if(typeof pathName === 'string'){srcset="img/webp/@@pathName.webp"}
+                @@if(typeof pathName !== 'string'){srcset="img/webp/hero-swiper-first.webp}
+            }
+
+            @@if(typeof observed === 'string' && observed === 'true'){
+                @@if(typeof pathName === 'string'){data-srcset="img/webp/@@pathName.webp"}
+                @@if(typeof pathName !== 'string'){data-srcset="img/webp/hero-swiper-first.webp}
+            }
+            @@if(typeof observed !== 'string' && observed === 'false'){}
         >
 
         <img class="image"
-            src=""
-            @@if(typeof pathName === 'string'){data-srcset="img/webp/@@pathName.png"}
-            @@if(typeof pathName !== 'string'){data-srcset="img/webp/hero-swiper-first.png}
+            @@if(typeof observed === 'string' && observed === 'true'){srcset=""}
+            @@if(typeof observed !== 'string' || observed === 'false'){
+                @@if(typeof pathName === 'string'){srcset="img/webp/@@pathName.webp"}
+                @@if(typeof pathName !== 'string'){srcset="img/webp/hero-swiper-first.webp}
+            }
+
+            @@if(typeof observed === 'string' && observed === 'true'){
+                @@if(typeof pathName === 'string'){data-srcset="img/webp/@@pathName.webp"}
+                @@if(typeof pathName !== 'string'){data-srcset="img/webp/hero-swiper-first.webp}
+            }
+            @@if(typeof observed !== 'string' && observed === 'false'){}
 
             @@if(typeof pathName === 'string'){alt="@@pathName"}
             @@if(typeof pathName === 'string'){alt="alt"}
