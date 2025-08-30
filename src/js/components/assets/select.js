@@ -5,6 +5,7 @@ export default function initCustomSelect(selector = ".select") {
         const trigger = select.querySelector(".select__trigger");
         const menu = select.querySelector(".select__menu");
         const options = [...select.querySelectorAll(".select__option")];
+
         const transitionDurations = window.getComputedStyle(menu).transitionDuration.split(", ");
         const transitionProperties = window.getComputedStyle(menu).transitionProperty.split(", ");
 
@@ -24,25 +25,16 @@ export default function initCustomSelect(selector = ".select") {
             duration = 300;
         }
 
-
-
-        const optionsHeight = options.map((el) => el.offsetHeight).reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-
-        console.log(optionsHeight);
-
         const openMenu = () => {
+
             menu.style.height = "auto";
-            menu.style.opacity = "1";
-            menu.style.visibility = "visible"
+            const fullHeight = menu.scrollHeight;
+            menu.style.height = "0";
 
-            clearTimeout(timeout);
-            select.classList.add("open");
-            menu.style.height = optionsHeight + "px";
-
-            console.log(optionsHeight);
-            menu.style.height = optionsHeight + "px";
-            menu.style.opacity = "";
-            menu.style.visibility = "";
+            requestAnimationFrame(() => {
+                select.classList.add("open");
+                menu.style.height = fullHeight + "px";
+            });
         };
 
         const closeMenu = () => {
